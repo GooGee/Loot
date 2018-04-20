@@ -1,0 +1,42 @@
+
+.dialogue .layer
+{
+    position: fixed; 
+    z-index: 100; 
+    background-color: black; 
+    opacity: 0.3; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+}
+
+.dialogue .panel
+{
+    position: fixed; 
+    z-index: 110; 
+    background-color: white; 
+    padding: 9px; 
+    top: 0; 
+    left: 0; 
+    width: 60%; 
+    margin-left: 20%; 
+    margin-top: 9%;
+}
+
+.dialogue .panel.small
+{
+    width: 30%; 
+    margin-left: 30%; 
+}
+
+.margin3
+{
+    margin: 3px;
+}
+
+.big-checkbox
+{
+    width: 33px;
+    height: 33px;
+}
