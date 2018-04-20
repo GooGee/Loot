@@ -387,9 +387,7 @@ Vue.component('ccc-crate', {
                     <th class="col-sm-1">Disable</th>
                     <th class="col-sm-2">Min ItemSets</th>
                     <th class="col-sm-2">Max ItemSets</th>
-                    <th class="col-sm-5">ItemSets
-                        <button v-on:click="update" class="btn btn-info">Update</button>
-                    </th>
+                    <th class="col-sm-5">ItemSets</th>
                 </tr>
             </thead>
             <tbody>
@@ -432,7 +430,9 @@ Vue.component('ccc-crate', {
                     <td>
                         <button v-on:click="change('max')" class="btn btn-info">Set</button>
                     </td>
-                    <td></td>
+                    <td>
+                        <button v-on:click="update" class="btn btn-info">Update</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -707,7 +707,7 @@ Vue.component('ccc-item-list', {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="navbar-brand">Loot</a>
+                <a class="navbar-brand">Loot</a>
             </div>
             <nav class="collapse navbar-collapse" id="bs-navbar">
                 <ul class="nav navbar-nav">
