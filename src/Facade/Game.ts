@@ -35,8 +35,8 @@ namespace Facade {
         save() {
             let data = {
                 version: this.version,
-                bag: this.bag,
-                crate: this.crate
+                crate: this.crate,
+                bag: this.bag
             };
             return JSON.stringify(data);
         }
@@ -47,30 +47,7 @@ namespace Facade {
             for (let index = 0; index < array.length; index++) {
                 const crate = array[index];
                 if (crate.included) {
-                    if (crate.bag.list.length == 0) {
-                        if (crate.disabled) {
-                            // ok
-                        } else {
-                            throw crate.name + ' : ItemSet is empty!';
-                        }
-                    }
-
-                    let ccc = new Loot.Crate();
-                    ccc.load(crate);
-                    if (crate.disabled) {
-                        ccc.MinItemSets = 0;
-                        ccc.MaxItemSets = 0;
-                        delete ccc.ItemSets;
-                    }
-
-                    let json = JSON.stringify(ccc);
-                    let ini = replace(json, '\\{', '(');
-                    ini = replace(ini, '\\[', '(');
-                    ini = replace(ini, '\\}', ')');
-                    ini = replace(ini, '\\]', ')');
-                    ini = replace(ini, /\"([^"]+)\":/, '$1=');
-                    ini = 'ConfigOverrideSupplyCrateItems=' + ini;
-                    list.push(ini);
+                    list.push(crate.deploy());
                 }
             }
             if (list.length == 0) {

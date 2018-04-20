@@ -304,6 +304,30 @@ var Facade;
                 }
             }
         };
+        Crate.prototype.deploy = function () {
+            if (this.disabled) {
+                // allow empty
+            }
+            else {
+                if (this.bag.list.length == 0) {
+                    throw this.name + ' : ItemSet list is empty!';
+                }
+            }
+            var ccc = new Loot.Crate();
+            ccc.load(this);
+            if (this.disabled) {
+                ccc.MinItemSets = 0;
+                ccc.MaxItemSets = 0;
+                delete ccc.ItemSets;
+            }
+            var json = JSON.stringify(ccc);
+            var line = replace(json, '\\{', '(');
+            line = replace(line, '\\[', '(');
+            line = replace(line, '\\}', ')');
+            line = replace(line, '\\]', ')');
+            line = replace(line, /\"([^"]+)\":/, '$1=');
+            return 'ConfigOverrideSupplyCrateItems=' + line;
+        };
         return Crate;
     }(Item));
     Facade.Crate = Crate;
@@ -361,8 +385,8 @@ var Facade;
         Game.prototype.save = function () {
             var data = {
                 version: this.version,
-                bag: this.bag,
-                crate: this.crate
+                crate: this.crate,
+                bag: this.bag
             };
             return JSON.stringify(data);
         };
@@ -372,29 +396,7 @@ var Facade;
             for (var index = 0; index < array.length; index++) {
                 var crate = array[index];
                 if (crate.included) {
-                    if (crate.bag.list.length == 0) {
-                        if (crate.disabled) {
-                            // ok
-                        }
-                        else {
-                            throw crate.name + ' : ItemSet is empty!';
-                        }
-                    }
-                    var ccc = new Loot.Crate();
-                    ccc.load(crate);
-                    if (crate.disabled) {
-                        ccc.MinItemSets = 0;
-                        ccc.MaxItemSets = 0;
-                        delete ccc.ItemSets;
-                    }
-                    var json = JSON.stringify(ccc);
-                    var ini = replace(json, '\\{', '(');
-                    ini = replace(ini, '\\[', '(');
-                    ini = replace(ini, '\\}', ')');
-                    ini = replace(ini, '\\]', ')');
-                    ini = replace(ini, /\"([^"]+)\":/, '$1=');
-                    ini = 'ConfigOverrideSupplyCrateItems=' + ini;
-                    list.push(ini);
+                    list.push(crate.deploy());
                 }
             }
             if (list.length == 0) {

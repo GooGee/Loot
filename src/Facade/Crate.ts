@@ -27,7 +27,32 @@ namespace Facade {
                     }
                 }
             }
+        }
 
+        deploy() {
+            if (this.disabled) {
+                // allow empty
+            } else {
+                if (this.bag.list.length == 0) {
+                    throw this.name + ' : ItemSet list is empty!';
+                }
+            }
+
+            let ccc = new Loot.Crate();
+            ccc.load(this);
+            if (this.disabled) {
+                ccc.MinItemSets = 0;
+                ccc.MaxItemSets = 0;
+                delete ccc.ItemSets;
+            }
+
+            let json = JSON.stringify(ccc);
+            let line = replace(json, '\\{', '(');
+            line = replace(line, '\\[', '(');
+            line = replace(line, '\\}', ')');
+            line = replace(line, '\\]', ')');
+            line = replace(line, /\"([^"]+)\":/, '$1=');
+            return 'ConfigOverrideSupplyCrateItems=' + line;
         }
 
     }
