@@ -50,7 +50,7 @@
                             <input v-model.number="item.max" type="number" min="1" class="form-control">
                         </td>
                         <td>
-                            <input v-if="item.blueprint==1" v-model.number="item.chance" type="number" step="0.1" min="0" max="1" class="form-control">
+                            <input v-if="1==item.blueprint" v-model.number="item.chance" type="number" step="0.1" min="0" max="1" class="form-control">
                         </td>
                     </tr>
                     <tr>
@@ -86,6 +86,9 @@
                 </li>
                 <li v-for="item in ItemFilter.list" class="list-group-item">
                     <button v-on:click="add(item)" class="btn btn-info btn-sm">+</button> {{item.name}}
+                    <span v-if="2==item.map" class="label label-warning">SE</span>
+                    <span v-if="3==item.map" class="label label-success">A</span>
+                    <span v-if="item.custom" class="label label-danger">C</span>
                 </li>
             </ul>
         </div>
@@ -289,10 +292,18 @@ Vue.component('ccc-choose', {
 <template id="tttCrate">
     <div>
         <div class="col-sm-9">
+            <h3>{{crate.name}}</h3>
+            <table v-if="crate.custom" class="table table-bordered">
+                <tr>
+                    <td>Name</td>
+                    <td><input v-model.number="crate.name" type="text" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>Class</td>
+                    <td><input v-model.number="crate.class" type="text" class="form-control"></td>
+                </tr>
+            </table>
             <table class="table table-bordered">
-                <caption>
-                    <h3>{{crate.name}}</h3>
-                </caption>
                 <thead>
                     <tr>
                         <th class="col-sm-1"></th>
@@ -358,7 +369,6 @@ Vue.component('ccc-crate', {
 });
 
 </script>
-
 <template id="tttCrateList">
     <div class="col-sm-12">
         <table class="table table-bordered">
@@ -385,19 +395,26 @@ Vue.component('ccc-crate', {
                     </th>
                     <th class="col-sm-1">Include</th>
                     <th class="col-sm-1">Disable</th>
-                    <th class="col-sm-2">Min ItemSets</th>
-                    <th class="col-sm-2">Max ItemSets</th>
+                    <th class="col-sm-1">Min ItemSets</th>
+                    <th class="col-sm-1">Max ItemSets</th>
                     <th class="col-sm-5">ItemSet List</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="crate in list">
-                    <td>{{crate.name}}</td>
                     <td>
-                        <label><input v-model="crate.included" type="checkbox" class="big-checkbox"></label>
+                        <span>{{crate.name}}</span>
+                        <button v-if="crate.custom" v-on:click="remove(crate)" class="btn btn-danger btn-sm">X</button>
                     </td>
                     <td>
-                        <label><input v-model="crate.disabled" type="checkbox" class="big-checkbox"></label>
+                        <label>
+                            <input v-model="crate.included" type="checkbox" class="big-checkbox">
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input v-model="crate.disabled" type="checkbox" class="big-checkbox">
+                        </label>
                     </td>
                     <td>
                         <input v-model.number="crate.min" type="number" min="1" class="form-control">
@@ -417,7 +434,9 @@ Vue.component('ccc-crate', {
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td>
+                        <button v-on:click="add" class="btn btn-primary">+</button>
+                    </td>
                     <td>
                         <button v-on:click="include" class="btn btn-info">All</button>
                     </td>
@@ -440,7 +459,7 @@ Vue.component('ccc-crate', {
 </template>
 
 <script>
-    
+
 Vue.component('ccc-crate-list', {
     template: '#tttCrateList',
     props: ['game'],
@@ -480,6 +499,21 @@ Vue.component('ccc-crate-list', {
         }
     },
     methods: {
+        add: function () {
+            let name = prompt('Please enter the Crate name');
+            if (name) {
+                let crate = this.game.crate.create();
+                crate.name = name;
+                crate.kind = this.kind;
+                crate.custom = true;
+                this.game.crate.push(crate);
+            }
+        },
+        remove: function (crate) {
+            if (confirm('Are you sure?')) {
+                this.game.crate.remove(crate);
+            }
+        },
         load: function (event) {
             let me = this;
             let file = event.target.files[0];
@@ -662,14 +696,23 @@ Vue.component('ccc-input', {
             </thead>
             <tbody>
                 <tr v-for="item in ItemFilter.list">
-                    <td>{{item.name}}</td>
-                    <td>{{item.class}}</td>
+                    <td>
+                        <div v-if="item.custom" class="form-inline">
+                            <input v-model="item.name" type="text" class="form-control">
+                            <button v-on:click="remove(item)" class="btn btn-danger btn-sm">X</button>
+                        </div>
+                        <span v-else>{{item.name}}</span>
+                    </td>
+                    <td>
+                        <input v-if="item.custom" v-model="item.class" type="text" class="form-control">
+                        <span v-else>{{item.class}}</span>
+                    </td>
                 </tr>
                 <!-- <tr>
-                    <td></td>
                     <td>
                         <button v-on:click="add" class="btn btn-info">+</button>
                     </td>
+                    <td></td>
                 </tr> -->
             </tbody>
         </table>
@@ -688,8 +731,21 @@ Vue.component('ccc-item-list', {
     },
     methods: {
         add: function () {
-            let item = this.game.item.create();
-            this.game.item.push(item);
+            let name = prompt('Please enter the Item name');
+            if (name) {
+                let item = this.game.item.create();
+                item.name = name;
+                item.kind = this.ItemFilter.kind;
+                item.blueprint = true;
+                item.custom = true;
+                this.game.item.push(item);
+            }
+        },
+        remove: function (item) {
+            if (confirm('Are you sure?')) {
+                this.game.item.remove(item);
+                this.ItemFilter.item.remove(item);
+            }
         }
     }
 });
@@ -712,13 +768,13 @@ Vue.component('ccc-item-list', {
             <nav class="collapse navbar-collapse" id="bs-navbar">
                 <ul class="nav navbar-nav">
                     <li v-bind:class="{active: -1 != tab.indexOf('crate')}">
-                        <a href="#" v-on:click="showCrateList">Crate</a>
+                        <a href="#" v-on:click="tab = 'cratelist'">Crate</a>
                     </li>
                     <li v-bind:class="{active: -1 != tab.indexOf('bag')}">
-                        <a href="#" v-on:click="showBagList">ItemSet</a>
+                        <a href="#" v-on:click="tab = 'baglist'">ItemSet</a>
                     </li>
                     <li v-bind:class="{active: 'itemlist' == tab}">
-                        <a href="#" v-on:click="showItemList">Item</a>
+                        <a href="#" v-on:click="tab = 'itemlist'">Item</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -734,9 +790,9 @@ Vue.component('ccc-item-list', {
         <div class="row">
             <ccc-crate-list v-show="'cratelist'==tab" v-bind:game="game"></ccc-crate-list>
             <ccc-crate v-if="'crate'==tab" v-bind:game="game" v-bind:crate="crate"></ccc-crate>
-            <ccc-bag-list v-if="'baglist'==tab" v-bind:game="game"></ccc-bag-list>
+            <ccc-bag-list v-show="'baglist'==tab" v-bind:game="game"></ccc-bag-list>
             <ccc-bag v-if="'bag'==tab" v-bind:game="game" v-bind:bag="bag"></ccc-bag>
-            <ccc-item-list v-if="'itemlist'==tab" v-bind:game="game"></ccc-item-list>
+            <ccc-item-list v-show="'itemlist'==tab" v-bind:game="game"></ccc-item-list>
         </div>
     </div>
 
@@ -815,17 +871,6 @@ const vvv = new Vue({
         this.game = game;
         this.tab = 'cratelist';
         this.ready = true;
-    },
-    methods: {
-        showCrateList: function () {
-            this.tab = 'cratelist';
-        },
-        showBagList: function () {
-            this.tab = 'baglist';
-        },
-        showItemList: function () {
-            this.tab = 'itemlist';
-        }
     }
 });
 

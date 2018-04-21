@@ -7,6 +7,7 @@ namespace Facade {
         min: number = 1;
         max: number = 1;
         map: number = 1;
+        custom: boolean = false;
         included: boolean = false;
         disabled: boolean = false;
         bag: List<Bag>;
@@ -30,6 +31,9 @@ namespace Facade {
         }
 
         deploy() {
+            if (this.class.length == 0) {
+                throw this.name + ' : ClassString can not be empty!';
+            }
             if (this.disabled) {
                 // allow empty
             } else {

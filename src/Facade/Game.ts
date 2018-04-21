@@ -25,6 +25,8 @@ namespace Facade {
 
         load(json) {
             if (json.version) {
+                this.item.clear();
+                this.item.load(json.item);
                 this.bag.clear();
                 this.bag.load(json.bag);
                 this.crate.clear();
@@ -33,12 +35,7 @@ namespace Facade {
         }
 
         save() {
-            let data = {
-                version: this.version,
-                crate: this.crate,
-                bag: this.bag
-            };
-            return JSON.stringify(data);
+            return JSON.stringify(this);
         }
 
         deploy() {

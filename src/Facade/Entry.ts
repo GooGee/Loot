@@ -12,6 +12,7 @@ namespace Facade {
         map: number = 1;
         chance: number = 0;
         blueprint: boolean = false;
+        custom: boolean = false;
 
     }
 

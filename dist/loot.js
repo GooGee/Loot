@@ -287,6 +287,7 @@ var Facade;
             _this.min = 1;
             _this.max = 1;
             _this.map = 1;
+            _this.custom = false;
             _this.included = false;
             _this.disabled = false;
             _this.bag = new List(Facade.Bag);
@@ -305,6 +306,9 @@ var Facade;
             }
         };
         Crate.prototype.deploy = function () {
+            if (this.class.length == 0) {
+                throw this.name + ' : ClassString can not be empty!';
+            }
             if (this.disabled) {
                 // allow empty
             }
@@ -348,6 +352,7 @@ var Facade;
             _this.map = 1;
             _this.chance = 0;
             _this.blueprint = false;
+            _this.custom = false;
             return _this;
         }
         return Entry;
@@ -376,6 +381,8 @@ var Facade;
         };
         Game.prototype.load = function (json) {
             if (json.version) {
+                this.item.clear();
+                this.item.load(json.item);
                 this.bag.clear();
                 this.bag.load(json.bag);
                 this.crate.clear();
@@ -383,12 +390,7 @@ var Facade;
             }
         };
         Game.prototype.save = function () {
-            var data = {
-                version: this.version,
-                crate: this.crate,
-                bag: this.bag
-            };
-            return JSON.stringify(data);
+            return JSON.stringify(this);
         };
         Game.prototype.deploy = function () {
             var array = this.crate.list;
