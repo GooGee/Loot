@@ -768,13 +768,13 @@ Vue.component('ccc-item-list', {
             <nav class="collapse navbar-collapse" id="bs-navbar">
                 <ul class="nav navbar-nav">
                     <li v-bind:class="{active: -1 != tab.indexOf('crate')}">
-                        <a href="#" v-on:click="tab = 'cratelist'">Crate</a>
+                        <a href="javascript:void(0)" v-on:click="tab = 'cratelist'">Crate</a>
                     </li>
                     <li v-bind:class="{active: -1 != tab.indexOf('bag')}">
-                        <a href="#" v-on:click="tab = 'baglist'">ItemSet</a>
+                        <a href="javascript:void(0)" v-on:click="tab = 'baglist'">ItemSet</a>
                     </li>
                     <li v-bind:class="{active: 'itemlist' == tab}">
-                        <a href="#" v-on:click="tab = 'itemlist'">Item</a>
+                        <a href="javascript:void(0)" v-on:click="tab = 'itemlist'">Item</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
