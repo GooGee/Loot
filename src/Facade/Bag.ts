@@ -1,23 +1,25 @@
-/// <reference path="../Item.ts"/>
+/// <reference path="../Entity/Item.ts" />
 
 namespace Facade {
 
-    let index: number = 0;
+    let BagIndex: number = 0;
 
-    export class Bag extends Item {
+    export class Bag extends Entity.Item {
         id: string = '';
         index: number = 0;
-        weight: number = 10;
-        min: number = 1;
-        max: number = 1;
-        entry: List<Entry>;
+        name: string = '';
+        weight: string = '1';
+        min: string = '1';
+        max: string = '1';
+        custom: boolean = true;
+        entry: Entity.List<Item>;
 
         constructor() {
             super();
-            index++;
-            this.index = index;
+            BagIndex++;
+            this.index = BagIndex;
             this.identify();
-            this.entry = new List<Entry>(Entry);
+            this.entry = new Entity.List<Item>(Item);
         }
 
         identify() {

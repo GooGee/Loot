@@ -1,22 +1,21 @@
-/// <reference path="Item.ts"/>
 
 namespace Loot {
 
-    export class ItemSet extends Item {
+    export class ItemSet extends Entity.Item {
         SetName: string = '';
-        SetWeight: number = 10;
+        SetWeight: number = 1;
         MinNumItems: number = 1;
         MaxNumItems: number = 1;
         NumItemsPower: number = 1.0;
         bItemsRandomWithoutReplacement: boolean = true;
-        ItemEntries: List<Entry>;
+        ItemEntries: Entity.List<Entry>;
 
         constructor() {
             super();
-            this.ItemEntries = new List<Entry>(Entry);
+            this.ItemEntries = new Entity.List<Entry>(Entry);
         }
 
-        load(bag) {
+        load(bag: Facade.Bag) {
             this.SetName = bag.name;
             this.SetWeight = parseInt(bag.weight);
             this.MinNumItems = parseInt(bag.min);
@@ -24,6 +23,5 @@ namespace Loot {
             this.ItemEntries.load(bag.entry.list);
         }
     }
-    ItemSet.prototype.ignoreList = ['name'];
 
 }

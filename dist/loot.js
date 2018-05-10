@@ -8,42 +8,44 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var Item = /** @class */ (function () {
-    function Item() {
-    }
-    Item.prototype.load = function (data) {
-        for (var key in data) {
-            if (data.hasOwnProperty(key)) {
-                if (this.ignoreList.indexOf(key) >= 0) {
-                    continue;
-                }
-                var item = data[key];
-                if ("object" == typeof item) {
+var Entity;
+(function (Entity) {
+    var Item = /** @class */ (function () {
+        function Item() {
+        }
+        Item.prototype.load = function (data) {
+            for (var key in data) {
+                if (data.hasOwnProperty(key)) {
+                    if (this.ignoreList.indexOf(key) >= 0) {
+                        continue;
+                    }
+                    var item = data[key];
                     if (this[key] && this[key].load) {
                         this[key].load(item);
                         continue;
                     }
+                    this[key] = item;
                 }
-                this[key] = item;
             }
-        }
-    };
-    Item.prototype.toJSON = function () {
-        var object = {};
-        for (var key in this) {
-            if (this.hasOwnProperty(key)) {
-                if (this.ignoreList.indexOf(key) >= 0) {
-                    continue;
+        };
+        Item.prototype.toJSON = function () {
+            var object = {};
+            for (var key in this) {
+                if (this.hasOwnProperty(key)) {
+                    if (this.ignoreList.indexOf(key) >= 0) {
+                        continue;
+                    }
+                    object[key] = this[key];
                 }
-                object[key] = this[key];
             }
-        }
-        return object;
-    };
-    return Item;
-}());
-Item.prototype.ignoreList = [];
-/// <reference path="Item.ts"/>
+            return object;
+        };
+        return Item;
+    }());
+    Entity.Item = Item;
+    Item.prototype.ignoreList = [];
+})(Entity || (Entity = {}));
+/// <reference path="Entity/Item.ts" />
 var Loot;
 (function (Loot) {
     var Crate = /** @class */ (function (_super) {
@@ -55,7 +57,7 @@ var Loot;
             _this.MaxItemSets = 1;
             _this.NumItemSetsPower = 1.0;
             _this.bSetsRandomWithoutReplacement = true;
-            _this.ItemSets = new List(Loot.ItemSet);
+            _this.ItemSets = new Entity.List(Loot.ItemSet);
             return _this;
         }
         Crate.prototype.load = function (crate) {
@@ -63,13 +65,17 @@ var Loot;
             this.MinItemSets = parseInt(crate.min);
             this.MaxItemSets = parseInt(crate.max);
             this.ItemSets.load(crate.bag.list);
+            this.ItemSets.list.forEach(function (bag) {
+                bag.ItemEntries.list.forEach(function (item) {
+                    item.MinQuality = crate.xmin;
+                    item.MaxQuality = crate.xmax;
+                });
+            });
         };
         return Crate;
-    }(Item));
+    }(Entity.Item));
     Loot.Crate = Crate;
-    Crate.prototype.ignoreList = ['name'];
 })(Loot || (Loot = {}));
-/// <reference path="Item.ts"/>
 var Loot;
 (function (Loot) {
     var Entry = /** @class */ (function (_super) {
@@ -77,7 +83,7 @@ var Loot;
         function Entry() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.ItemEntryName = '';
-            _this.EntryWeight = 10;
+            _this.EntryWeight = 1;
             _this.MinQuantity = 1;
             _this.MaxQuantity = 1;
             _this.MinQuality = 1;
@@ -93,7 +99,7 @@ var Loot;
                 return this.ItemClassStrings[0];
             },
             set: function (name) {
-                this.ItemClassStrings = [name];
+                this.ItemClassStrings[0] = name;
             },
             enumerable: true,
             configurable: true
@@ -103,26 +109,24 @@ var Loot;
                 return this.ItemsWeights[0];
             },
             set: function (weight) {
-                this.ItemsWeights = [weight];
+                this.ItemsWeights[0] = weight;
             },
             enumerable: true,
             configurable: true
         });
-        Entry.prototype.load = function (entry) {
-            this.name = entry.class;
-            this.weight = entry.weight;
-            this.ItemEntryName = entry.name;
-            this.EntryWeight = parseInt(entry.weight);
-            this.MinQuantity = parseInt(entry.min);
-            this.MaxQuantity = parseInt(entry.max);
-            this.ChanceToBeBlueprintOverride = parseFloat(entry.chance);
+        Entry.prototype.load = function (item) {
+            this.ItemEntryName = item.name;
+            this.name = item.class;
+            this.weight = parseInt(item.weight);
+            this.EntryWeight = this.weight;
+            this.MinQuantity = parseInt(item.min);
+            this.MaxQuantity = parseInt(item.max);
+            this.ChanceToBeBlueprintOverride = parseFloat(item.chance);
         };
         return Entry;
-    }(Item));
+    }(Entity.Item));
     Loot.Entry = Entry;
-    Entry.prototype.ignoreList = ['name'];
 })(Loot || (Loot = {}));
-/// <reference path="Item.ts"/>
 var Loot;
 (function (Loot) {
     var ItemSet = /** @class */ (function (_super) {
@@ -130,12 +134,12 @@ var Loot;
         function ItemSet() {
             var _this = _super.call(this) || this;
             _this.SetName = '';
-            _this.SetWeight = 10;
+            _this.SetWeight = 1;
             _this.MinNumItems = 1;
             _this.MaxNumItems = 1;
             _this.NumItemsPower = 1.0;
             _this.bItemsRandomWithoutReplacement = true;
-            _this.ItemEntries = new List(Loot.Entry);
+            _this.ItemEntries = new Entity.List(Loot.Entry);
             return _this;
         }
         ItemSet.prototype.load = function (bag) {
@@ -146,114 +150,79 @@ var Loot;
             this.ItemEntries.load(bag.entry.list);
         };
         return ItemSet;
-    }(Item));
+    }(Entity.Item));
     Loot.ItemSet = ItemSet;
-    ItemSet.prototype.ignoreList = ['name'];
 })(Loot || (Loot = {}));
-var List = /** @class */ (function () {
-    function List(type) {
-        this.itemType = type;
-        this.list = [];
-    }
-    List.prototype.load = function (object) {
-        var array;
-        if (Array.isArray(object)) {
-            array = object;
+var Entity;
+(function (Entity) {
+    var List = /** @class */ (function () {
+        function List(type) {
+            this.list = Array();
+            this.itemType = type;
         }
-        else {
-            if (Array.isArray(object.list)) {
-                array = object.list;
+        List.prototype.create = function () {
+            return new this.itemType();
+        };
+        List.prototype.add = function (item) {
+            this.list.push(item);
+        };
+        List.prototype.push = function (item) {
+            this.add(item);
+        };
+        List.prototype.remove = function (item) {
+            var index = this.list.indexOf(item);
+            this.list.splice(index, 1);
+        };
+        List.prototype.clear = function () {
+            this.list.length = 0;
+            this.list.splice(0, 0);
+        };
+        List.prototype.load = function (object) {
+            var array;
+            if (Array.isArray(object)) {
+                array = object;
             }
             else {
-                return;
+                if (Array.isArray(object.list)) {
+                    array = object.list;
+                }
+                else {
+                    return;
+                }
             }
-        }
-        for (var index = 0; index < array.length; index++) {
-            var item = this.create();
-            item.load(array[index]);
-            this.push(item);
-        }
-    };
-    List.prototype.toJSON = function () {
-        return this.list;
-    };
-    List.prototype.find = function (name) {
-        for (var index = 0; index < this.list.length; index++) {
-            var item = this.list[index];
-            if (item.name == name) {
-                return item;
+            this.clear();
+            for (var index = 0; index < array.length; index++) {
+                var item = this.create();
+                item.load(array[index]);
+                this.add(item);
             }
-        }
-        return null;
-    };
-    List.prototype.create = function () {
-        return this.make(this.itemType);
-    };
-    List.prototype.make = function (type) {
-        return new type();
-    };
-    List.prototype.makeUniqueName = function (name) {
-        var index = 1;
-        while (this.find(name)) {
-            name = name + index;
-            index += 1;
-        }
-        return name;
-    };
-    List.prototype.push = function (item) {
-        this.list.push(item);
-    };
-    List.prototype.insert = function (item, where) {
-        var index = this.list.indexOf(where);
-        this.insertAt(index, item);
-    };
-    List.prototype.insertAt = function (index, item) {
-        this.list.splice(index, 0, item);
-    };
-    List.prototype.merge = function (array) {
-        var list = this.list.concat();
-        for (var index = 0; index < array.length; index++) {
-            var item = array[index];
-            if (this.find(item.name)) {
-                continue;
-            }
-            list.push(item);
-        }
-        return list;
-    };
-    List.prototype.remove = function (item) {
-        var index = this.list.indexOf(item);
-        this.list.splice(index, 1);
-    };
-    List.prototype.clear = function () {
-        this.list.length = 0;
-        this.list.splice(0, 0);
-    };
-    List.prototype.moveUp = function (item) {
-        moveUp(this.list, item);
-    };
-    List.prototype.moveDown = function (item) {
-        moveDown(this.list, item);
-    };
-    return List;
-}());
-/// <reference path="../Item.ts"/>
+        };
+        List.prototype.toJSON = function () {
+            return this.list;
+        };
+        return List;
+    }());
+    Entity.List = List;
+})(Entity || (Entity = {}));
+/// <reference path="../Entity/Item.ts" />
 var Facade;
 (function (Facade) {
-    var index = 0;
+    var BagIndex = 0;
     var Bag = /** @class */ (function (_super) {
         __extends(Bag, _super);
         function Bag() {
             var _this = _super.call(this) || this;
             _this.id = '';
             _this.index = 0;
-            _this.weight = 10;
-            _this.min = 1;
-            _this.max = 1;
-            index++;
-            _this.index = index;
+            _this.name = '';
+            _this.weight = '1';
+            _this.min = '1';
+            _this.max = '1';
+            _this.custom = true;
+            BagIndex++;
+            _this.index = BagIndex;
             _this.identify();
-            _this.entry = new List(Facade.Entry);
+            _this.entry = new Entity.List(Facade.Item);
             return _this;
         }
         Bag.prototype.identify = function () {
@@ -273,26 +242,45 @@ var Facade;
             this.weight = weight;
         };
         return Bag;
-    }(Item));
+    }(Entity.Item));
     Facade.Bag = Bag;
 })(Facade || (Facade = {}));
-/// <reference path="../Item.ts"/>
 var Facade;
 (function (Facade) {
     var Crate = /** @class */ (function (_super) {
         __extends(Crate, _super);
         function Crate() {
             var _this = _super.call(this) || this;
+            _this.name = '';
             _this.class = '';
-            _this.min = 1;
-            _this.max = 1;
+            _this.min = '1';
+            _this.max = '1';
+            _this.cmin = '1';
+            _this.cmax = '1';
+            _this.qmin = '1';
+            _this.qmax = '1';
             _this.map = 1;
+            _this.kind = '';
             _this.custom = false;
             _this.included = false;
             _this.disabled = false;
-            _this.bag = new List(Facade.Bag);
+            _this.bag = new Entity.List(Facade.Bag);
             return _this;
         }
+        Object.defineProperty(Crate.prototype, "xmin", {
+            get: function () {
+                return parseFloat(this.cmin) / parseFloat(this.qmin);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Crate.prototype, "xmax", {
+            get: function () {
+                return parseFloat(this.cmax) / parseFloat(this.qmax);
+            },
+            enumerable: true,
+            configurable: true
+        });
         Crate.prototype.update = function (array) {
             var myList = this.bag.list;
             for (var index = 0; index < myList.length; index++) {
@@ -324,7 +312,10 @@ var Facade;
                 ccc.MaxItemSets = 0;
                 delete ccc.ItemSets;
             }
-            var json = JSON.stringify(ccc);
+            return this.make(ccc);
+        };
+        Crate.prototype.make = function (crate) {
+            var json = JSON.stringify(crate);
             var line = replace(json, '\\{', '(');
             line = replace(line, '\\[', '(');
             line = replace(line, '\\}', ')');
@@ -333,43 +324,19 @@ var Facade;
             return 'ConfigOverrideSupplyCrateItems=' + line;
         };
         return Crate;
-    }(Item));
+    }(Entity.Item));
     Facade.Crate = Crate;
 })(Facade || (Facade = {}));
-/// <reference path="../Item.ts"/>
-var Facade;
-(function (Facade) {
-    var Entry = /** @class */ (function (_super) {
-        __extends(Entry, _super);
-        function Entry() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.weight = 10;
-            _this.class = '';
-            _this.kind = '';
-            _this.path = '';
-            _this.min = 1;
-            _this.max = 1;
-            _this.map = 1;
-            _this.chance = 0;
-            _this.blueprint = false;
-            _this.custom = false;
-            return _this;
-        }
-        return Entry;
-    }(Item));
-    Facade.Entry = Entry;
-})(Facade || (Facade = {}));
-/// <reference path="../Item.ts"/>
 var Facade;
 (function (Facade) {
     var Game = /** @class */ (function (_super) {
         __extends(Game, _super);
         function Game() {
             var _this = _super.call(this) || this;
-            _this.version = 1;
-            _this.crate = new List(Facade.Crate);
-            _this.bag = new List(Facade.Bag);
-            _this.item = new List(Facade.Entry);
+            _this.version = 2;
+            _this.crate = new Entity.List(Facade.Crate);
+            _this.bag = new Entity.List(Facade.Bag);
+            _this.item = new Entity.List(Facade.Item);
             return _this;
         }
         Game.prototype.update = function () {
@@ -380,14 +347,16 @@ var Facade;
             }
         };
         Game.prototype.load = function (json) {
-            if (json.version) {
+            if (json.version == this.version) {
                 this.item.clear();
                 this.item.load(json.item);
                 this.bag.clear();
                 this.bag.load(json.bag);
                 this.crate.clear();
                 this.crate.load(json.crate);
+                return;
             }
+            throw "Version did not match!";
         };
         Game.prototype.save = function () {
             return JSON.stringify(this);
@@ -407,8 +376,31 @@ var Facade;
             return list.join("\n");
         };
         return Game;
-    }(Item));
+    }(Entity.Item));
     Facade.Game = Game;
+})(Facade || (Facade = {}));
+var Facade;
+(function (Facade) {
+    var Item = /** @class */ (function (_super) {
+        __extends(Item, _super);
+        function Item() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.name = '';
+            _this.weight = '1';
+            _this.class = '';
+            _this.kind = '';
+            _this.path = '';
+            _this.min = '1';
+            _this.max = '1';
+            _this.map = '1';
+            _this.chance = '0';
+            _this.blueprint = false;
+            _this.custom = false;
+            return _this;
+        }
+        return Item;
+    }(Entity.Item));
+    Facade.Item = Item;
 })(Facade || (Facade = {}));
 function flatten(array) {
     return [].concat.apply([], array);

@@ -1,25 +1,24 @@
-/// <reference path="Item.ts"/>
 
 namespace Loot {
 
-    export class Entry extends Item {
+    export class Entry extends Entity.Item {
         ItemEntryName: string = '';
-        EntryWeight: number = 10;
+        EntryWeight: number = 1;
         MinQuantity: number = 1;
         MaxQuantity: number = 1;
         MinQuality: number = 1;
         MaxQuality: number = 1;
         bForceBlueprint: boolean = false;
         ChanceToBeBlueprintOverride: number = 0.0;
-        protected ItemClassStrings: string[] = [''];
-        protected ItemsWeights: number[] = [1];
+        readonly ItemClassStrings: string[] = [''];
+        readonly ItemsWeights: number[] = [1];
 
         get name(): string {
             return this.ItemClassStrings[0];
         }
 
         set name(name: string) {
-            this.ItemClassStrings = [name];
+            this.ItemClassStrings[0] = name;
         }
 
         get weight(): number {
@@ -27,19 +26,18 @@ namespace Loot {
         }
 
         set weight(weight: number) {
-            this.ItemsWeights = [weight];
+            this.ItemsWeights[0] = weight;
         }
 
-        load(entry) {
-            this.name = entry.class;
-            this.weight = entry.weight;
-            this.ItemEntryName = entry.name;
-            this.EntryWeight = parseInt(entry.weight);
-            this.MinQuantity = parseInt(entry.min);
-            this.MaxQuantity = parseInt(entry.max);
-            this.ChanceToBeBlueprintOverride = parseFloat(entry.chance);
+        load(item: Facade.Item) {
+            this.ItemEntryName = item.name;
+            this.name = item.class;
+            this.weight = parseInt(item.weight);
+            this.EntryWeight = this.weight;
+            this.MinQuantity = parseInt(item.min);
+            this.MaxQuantity = parseInt(item.max);
+            this.ChanceToBeBlueprintOverride = parseFloat(item.chance);
         }
     }
-    Entry.prototype.ignoreList = ['name'];
 
 }

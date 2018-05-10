@@ -41,7 +41,7 @@
                         </td>
                         <td>{{item.name}}</td>
                         <td>
-                            <input v-model.number="item.weight" type="number" min="10" step="10" class="form-control">
+                            <input v-model.number="item.weight" type="number" min="1" step="1" class="form-control">
                         </td>
                         <td>
                             <input v-model.number="item.min" type="number" min="1" class="form-control">
@@ -321,7 +321,7 @@ Vue.component('ccc-choose', {
                         </td>
                         <td>{{bag.name}}</td>
                         <td>
-                            <input v-model.number="bag.weight" type="number" min="10" step="10" class="form-control">
+                            <input v-model.number="bag.weight" type="number" min="1" step="1" class="form-control">
                         </td>
                         <td>
                             <input v-model.number="bag.min" type="number" min="1" class="form-control">
@@ -385,31 +385,25 @@ Vue.component('ccc-crate', {
             <thead>
                 <tr>
                     <th class="col-sm-3">
-                        <div class="form-inline">
-                            <span>Name</span>
-                            <select v-model="kind" class="form-control pull-right">
-                                <option v-for="name in kindList" v-bind:value="name">{{name}}</option>
-                            </select>
-                            <div class="clearfix"></div>
-                        </div>
+                        <select v-model="kind" class="form-control">
+                            <option v-for="name in kindList" v-bind:value="name">{{name}}</option>
+                        </select>
                     </th>
-                    <th class="col-sm-1">Include</th>
                     <th class="col-sm-1">Disable</th>
                     <th class="col-sm-1">Min ItemSets</th>
                     <th class="col-sm-1">Max ItemSets</th>
-                    <th class="col-sm-5">ItemSet List</th>
+                    <th class="col-sm-1">Min Quality</th>
+                    <th class="col-sm-1">Max Quality</th>
+                    <th class="col-sm-4">ItemSet List</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="crate in list">
                     <td>
-                        <span>{{crate.name}}</span>
-                        <button v-if="crate.custom" v-on:click="remove(crate)" class="btn btn-danger btn-sm">X</button>
-                    </td>
-                    <td>
                         <label>
-                            <input v-model="crate.included" type="checkbox" class="big-checkbox">
+                            <input v-model="crate.included" type="checkbox"> {{crate.name}}
                         </label>
+                        <button v-if="crate.custom" v-on:click="remove(crate)" class="btn btn-danger btn-sm">X</button>
                     </td>
                     <td>
                         <label>
@@ -421,6 +415,12 @@ Vue.component('ccc-crate', {
                     </td>
                     <td>
                         <input v-model.number="crate.max" type="number" min="1" class="form-control">
+                    </td>
+                    <td>
+                        <input v-model.number="crate.cmin" type="number" min="0.1" class="form-control">
+                    </td>
+                    <td>
+                        <input v-model.number="crate.cmax" type="number" min="0.1" class="form-control">
                     </td>
                     <td>
                         <div class="pull-right">
@@ -435,19 +435,23 @@ Vue.component('ccc-crate', {
                 </tr>
                 <tr>
                     <td>
-                        <button v-on:click="add" class="btn btn-primary">+</button>
-                    </td>
-                    <td>
                         <button v-on:click="include" class="btn btn-info">All</button>
+                        <button v-on:click="add" class="btn btn-primary">+</button>
                     </td>
                     <td>
                         <button v-on:click="disable" class="btn btn-info">All</button>
                     </td>
                     <td>
-                        <button v-on:click="change('min')" class="btn btn-info">Set</button>
+                        <button v-on:click="change('min', true)" class="btn btn-info">Set</button>
                     </td>
                     <td>
-                        <button v-on:click="change('max')" class="btn btn-info">Set</button>
+                        <button v-on:click="change('max', true)" class="btn btn-info">Set</button>
+                    </td>
+                    <td>
+                        <button v-on:click="change('cmin')" class="btn btn-info">Set</button>
+                    </td>
+                    <td>
+                        <button v-on:click="change('cmax')" class="btn btn-info">Set</button>
                     </td>
                     <td>
                         <button v-on:click="update" class="btn btn-info">Update</button>
@@ -518,7 +522,11 @@ Vue.component('ccc-crate-list', {
             let me = this;
             let file = event.target.files[0];
             read(file, function (json) {
-                me.game.load(json);
+                try {
+                    me.game.load(json);
+                } catch (exc) {
+                    alert(exc);
+                }
             });
         },
         update: function () {
@@ -534,13 +542,16 @@ Vue.component('ccc-crate-list', {
                     message: 'Paste this into Game.ini',
                     text: ini
                 });
-            } catch (e) {
-                alert(e);
+            } catch (exc) {
+                alert(exc);
             }
         },
-        change: function (key) {
+        change: function (key, integer) {
             let string = prompt('Please enter a number', 1);
-            let amount = parseInt(string);
+            let amount = parseFloat(string);
+            if (integer) {
+                amount = parseInt(string);
+            }
             let array = this.list;
             for (let index = 0; index < array.length; index++) {
                 const crate = array[index];
@@ -811,7 +822,7 @@ const ItemFilter = new Vue({
         item: null
     },
     created: function () {
-        this.item = new List(Facade.Entry);
+        this.item = new Entity.List(Facade.Item);
         this.item.load(ItemList);
 
         let list = this.item.list;

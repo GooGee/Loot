@@ -1,20 +1,33 @@
-/// <reference path="../Item.ts"/>
 
 namespace Facade {
 
-    export class Crate extends Item {
-        class: string = '';
-        min: number = 1;
-        max: number = 1;
-        map: number = 1;
-        custom: boolean = false;
-        included: boolean = false;
-        disabled: boolean = false;
-        bag: List<Bag>;
+    export class Crate extends Entity.Item {
+        name: string = ''
+        class: string = ''
+        min: string = '1'
+        max: string = '1'
+        cmin: string = '1'
+        cmax: string = '1'
+        qmin: string = '1'
+        qmax: string = '1'
+        map: number = 1
+        kind: string = ''
+        custom: boolean = false
+        included: boolean = false
+        disabled: boolean = false
+        bag: Entity.List<Bag>
 
         constructor() {
             super();
-            this.bag = new List<Bag>(Bag);
+            this.bag = new Entity.List<Bag>(Bag);
+        }
+
+        get xmin(): number {
+            return parseFloat(this.cmin) / parseFloat(this.qmin);
+        }
+
+        get xmax(): number {
+            return parseFloat(this.cmax) / parseFloat(this.qmax);
         }
 
         update(array: Bag[]) {
@@ -50,7 +63,11 @@ namespace Facade {
                 delete ccc.ItemSets;
             }
 
-            let json = JSON.stringify(ccc);
+            return this.make(ccc)
+        }
+
+        make(crate: Loot.Crate) {
+            let json = JSON.stringify(crate);
             let line = replace(json, '\\{', '(');
             line = replace(line, '\\[', '(');
             line = replace(line, '\\}', ')');

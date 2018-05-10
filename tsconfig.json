@@ -2,7 +2,6 @@
     "compilerOptions": {
         "outFile": "./dist/loot.js",
         "allowJs": true,
-        //"strict": true,
         "target": "es5"
     },
     "include": [

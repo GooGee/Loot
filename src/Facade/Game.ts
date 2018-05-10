@@ -1,18 +1,17 @@
-/// <reference path="../Item.ts"/>
 
 namespace Facade {
 
-    export class Game extends Item {
-        version: number = 1;
-        crate: List<Crate>;
-        bag: List<Bag>;
-        item: List<Entry>;
+    export class Game extends Entity.Item {
+        version: number = 2
+        crate: Entity.List<Crate>
+        bag: Entity.List<Bag>
+        item: Entity.List<Item>
 
         constructor() {
             super();
-            this.crate = new List<Crate>(Crate);
-            this.bag = new List<Bag>(Bag);
-            this.item = new List<Entry>(Entry);
+            this.crate = new Entity.List<Crate>(Crate);
+            this.bag = new Entity.List<Bag>(Bag);
+            this.item = new Entity.List<Item>(Item);
         }
 
         update() {
@@ -24,14 +23,16 @@ namespace Facade {
         }
 
         load(json) {
-            if (json.version) {
+            if (json.version == this.version) {
                 this.item.clear();
                 this.item.load(json.item);
                 this.bag.clear();
                 this.bag.load(json.bag);
                 this.crate.clear();
                 this.crate.load(json.crate);
+                return;
             }
+            throw "Version did not match!";
         }
 
         save() {
@@ -52,6 +53,7 @@ namespace Facade {
             }
             return list.join("\n");
         }
+
     }
 
 }
