@@ -45,7 +45,63 @@ var Entity;
     Entity.Item = Item;
     Item.prototype.ignoreList = [];
 })(Entity || (Entity = {}));
-/// <reference path="Entity/Item.ts" />
+var Entity;
+(function (Entity) {
+    var List = /** @class */ (function () {
+        function List(type) {
+            this.list = Array();
+            this.itemType = type;
+        }
+        List.prototype.create = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return new this.itemType;
+        };
+        List.prototype.add = function (item) {
+            this.list.push(item);
+        };
+        List.prototype.remove = function (item) {
+            var index = this.list.indexOf(item);
+            this.list.splice(index, 1);
+        };
+        List.prototype.clear = function () {
+            this.list.length = 0;
+            this.list.splice(0, 0);
+        };
+        List.prototype.load = function (object) {
+            var _this = this;
+            var array;
+            if (Array.isArray(object)) {
+                array = object;
+            }
+            else {
+                if (Array.isArray(object.list)) {
+                    array = object.list;
+                }
+                else {
+                    return;
+                }
+            }
+            this.clear();
+            array.forEach(function (one) {
+                var item = _this.create();
+                item.load(one);
+                _this.add(item);
+            });
+        };
+        List.prototype.toJSON = function () {
+            return this.list;
+        };
+        return List;
+    }());
+    Entity.List = List;
+})(Entity || (Entity = {}));
+/// <reference path="./Entity/Item.ts" />
+/// <reference path="./Entity/Newable.ts" />
+/// <reference path="./Entity/List.ts" />
+var AAA = '';
 var Loot;
 (function (Loot) {
     var Crate = /** @class */ (function (_super) {
@@ -153,58 +209,6 @@ var Loot;
     }(Entity.Item));
     Loot.ItemSet = ItemSet;
 })(Loot || (Loot = {}));
-var Entity;
-(function (Entity) {
-    var List = /** @class */ (function () {
-        function List(type) {
-            this.list = Array();
-            this.itemType = type;
-        }
-        List.prototype.create = function () {
-            return new this.itemType();
-        };
-        List.prototype.add = function (item) {
-            this.list.push(item);
-        };
-        List.prototype.push = function (item) {
-            this.add(item);
-        };
-        List.prototype.remove = function (item) {
-            var index = this.list.indexOf(item);
-            this.list.splice(index, 1);
-        };
-        List.prototype.clear = function () {
-            this.list.length = 0;
-            this.list.splice(0, 0);
-        };
-        List.prototype.load = function (object) {
-            var array;
-            if (Array.isArray(object)) {
-                array = object;
-            }
-            else {
-                if (Array.isArray(object.list)) {
-                    array = object.list;
-                }
-                else {
-                    return;
-                }
-            }
-            this.clear();
-            for (var index = 0; index < array.length; index++) {
-                var item = this.create();
-                item.load(array[index]);
-                this.add(item);
-            }
-        };
-        List.prototype.toJSON = function () {
-            return this.list;
-        };
-        return List;
-    }());
-    Entity.List = List;
-})(Entity || (Entity = {}));
-/// <reference path="../Entity/Item.ts" />
 var Facade;
 (function (Facade) {
     var BagIndex = 0;

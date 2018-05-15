@@ -1,4 +1,3 @@
-/// <reference path="Entity/Item.ts" />
 
 namespace Loot {
 

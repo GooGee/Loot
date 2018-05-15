@@ -109,7 +109,7 @@ Vue.component('ccc-bag', {
         add: function (item) {
             let iii = this.bag.entry.create();
             iii.load(item);
-            this.bag.entry.push(iii);
+            this.bag.entry.add(iii);
         },
         remove: function (item) {
             if (confirm('Are you sure?')) {
@@ -212,7 +212,7 @@ Vue.component('ccc-bag-list', {
             if (name) {
                 let bag = this.game.bag.create();
                 bag.name = name;
-                this.game.bag.push(bag);
+                this.game.bag.add(bag);
             }
         },
         remove: function (bag) {
@@ -358,7 +358,7 @@ Vue.component('ccc-crate', {
         add: function (bag) {
             let bbb = this.crate.bag.create();
             bbb.load(bag);
-            this.crate.bag.push(bbb);
+            this.crate.bag.add(bbb);
         },
         remove: function (crate) {
             if (confirm('Are you sure?')) {
@@ -464,146 +464,145 @@ Vue.component('ccc-crate', {
 
 <script>
 
-Vue.component('ccc-crate-list', {
-    template: '#tttCrateList',
-    props: ['game'],
-    data: function () {
-        return {
-            kind: '',
-            kindList: ['All'],
-            included: false,
-            disabled: false,
-        };
-    },
-    created: function () {
-        let list = this.game.crate.list;
-        for (let index = 0; index < list.length; index++) {
-            const crate = list[index];
-            if (this.kindList.indexOf(crate.kind) == -1) {
-                this.kindList.push(crate.kind);
-            }
-        }
-        this.kind = this.kindList[1];
-    },
-    computed: {
-        list: function () {
+    Vue.component('ccc-crate-list', {
+        template: '#tttCrateList',
+        props: ['game'],
+        data: function () {
+            return {
+                kind: '',
+                kindList: ['All'],
+                included: false,
+                disabled: false,
+            };
+        },
+        created: function () {
             let list = this.game.crate.list;
-            if (this.kind == 'All') {
-                return list;
-            }
-
-            let array = [];
             for (let index = 0; index < list.length; index++) {
                 const crate = list[index];
-                if (this.kind == crate.kind) {
-                    array.push(crate);
+                if (this.kindList.indexOf(crate.kind) == -1) {
+                    this.kindList.push(crate.kind);
                 }
             }
-            return array;
-        }
-    },
-    methods: {
-        add: function () {
-            let name = prompt('Please enter the Crate name');
-            if (name) {
-                let crate = this.game.crate.create();
-                crate.name = name;
-                crate.kind = this.kind;
-                crate.custom = true;
-                this.game.crate.push(crate);
+            this.kind = this.kindList[1];
+        },
+        computed: {
+            list: function () {
+                let list = this.game.crate.list;
+                if (this.kind == 'All') {
+                    return list;
+                }
+
+                let array = [];
+                for (let index = 0; index < list.length; index++) {
+                    const crate = list[index];
+                    if (this.kind == crate.kind) {
+                        array.push(crate);
+                    }
+                }
+                return array;
             }
         },
-        remove: function (crate) {
-            if (confirm('Are you sure?')) {
-                this.game.crate.remove(crate);
-            }
-        },
-        load: function (event) {
-            let me = this;
-            let file = event.target.files[0];
-            read(file, function (json) {
+        methods: {
+            add: function () {
+                let name = prompt('Please enter the Crate name');
+                if (name) {
+                    let crate = this.game.crate.create();
+                    crate.name = name;
+                    crate.kind = this.kind;
+                    crate.custom = true;
+                    this.game.crate.add(crate);
+                }
+            },
+            remove: function (crate) {
+                if (confirm('Are you sure?')) {
+                    this.game.crate.remove(crate);
+                }
+            },
+            load: function (event) {
+                let me = this;
+                let file = event.target.files[0];
+                read(file, function (json) {
+                    try {
+                        me.game.load(json);
+                    } catch (exc) {
+                        alert(exc);
+                    }
+                });
+            },
+            update: function () {
+                this.game.update();
+            },
+            save: function () {
+                download('loot.json', this.game.save());
+            },
+            deploy: function () {
                 try {
-                    me.game.load(json);
+                    let ini = this.game.deploy();
+                    showInput({
+                        message: 'Paste this into Game.ini',
+                        text: ini
+                    });
                 } catch (exc) {
                     alert(exc);
                 }
-            });
-        },
-        update: function () {
-            this.game.update();
-        },
-        save: function () {
-            download('loot.json', this.game.save());
-        },
-        deploy: function () {
-            try {
-                let ini = this.game.deploy();
-                showInput({
-                    message: 'Paste this into Game.ini',
-                    text: ini
-                });
-            } catch (exc) {
-                alert(exc);
-            }
-        },
-        change: function (key, integer) {
-            let string = prompt('Please enter a number', 1);
-            let amount = parseFloat(string);
-            if (integer) {
-                amount = parseInt(string);
-            }
-            let array = this.list;
-            for (let index = 0; index < array.length; index++) {
-                const crate = array[index];
-                crate[key] = amount;
-            }
-        },
-        edit: function (crate) {
-            CrateEH.$emit('edit', crate);
-        },
-        copy: function (crate) {
-            showChoose({
-                message: 'Please select the source crate',
-                list: this.notEmpty(),
-                yesCB: function (selected) {
-                    if (Object.is(crate, selected)) {
-                        alert('Same crate!');
-                        return;
+            },
+            change: function (key, integer) {
+                let string = prompt('Please enter a number', 1);
+                let amount = parseFloat(string);
+                if (integer) {
+                    amount = parseInt(string);
+                }
+                let array = this.list;
+                for (let index = 0; index < array.length; index++) {
+                    const crate = array[index];
+                    crate[key] = amount;
+                }
+            },
+            edit: function (crate) {
+                CrateEH.$emit('edit', crate);
+            },
+            copy: function (crate) {
+                showChoose({
+                    message: 'Please select the source crate',
+                    list: this.notEmpty(),
+                    yesCB: function (selected) {
+                        if (Object.is(crate, selected)) {
+                            alert('Same crate!');
+                            return;
+                        }
+                        crate.bag.load(selected.bag);
                     }
-                    crate.bag.load(selected.bag);
+                });
+            },
+            include: function () {
+                this.included = !this.included;
+                for (let index = 0; index < this.list.length; index++) {
+                    const crate = this.list[index];
+                    crate.included = this.included;
                 }
-            });
-        },
-        include: function () {
-            this.included = !this.included;
-            for (let index = 0; index < this.list.length; index++) {
-                const crate = this.list[index];
-                crate.included = this.included;
-            }
-        },
-        disable: function () {
-            this.disabled = !this.disabled;
-            for (let index = 0; index < this.list.length; index++) {
-                const crate = this.list[index];
-                crate.disabled = this.disabled;
-            }
-        },
-        notEmpty: function () {
-            let array = [];
-            let list = this.game.crate.list;
-            for (let index = 0; index < list.length; index++) {
-                const crate = list[index];
-                if (crate.bag.list.length) {
-                    array.push(crate);
+            },
+            disable: function () {
+                this.disabled = !this.disabled;
+                for (let index = 0; index < this.list.length; index++) {
+                    const crate = this.list[index];
+                    crate.disabled = this.disabled;
                 }
+            },
+            notEmpty: function () {
+                let array = [];
+                let list = this.game.crate.list;
+                for (let index = 0; index < list.length; index++) {
+                    const crate = list[index];
+                    if (crate.bag.list.length) {
+                        array.push(crate);
+                    }
+                }
+                return array;
             }
-            return array;
         }
-    }
-});
+    });
 
 </script>
-
 <template id="tttDialogue">
     <div class="dialogue">
         <div class="layer"></div>
@@ -636,7 +635,7 @@ Vue.component('ccc-dialogue', {
             <h4>{{input.message}}</h4>
         </template>
         <template slot="body">
-            <textarea cols="111" rows="16">{{input.text}}</textarea>
+            <textarea rows="18" class="form-control" spellcheck="false">{{input.text}}</textarea>
         </template>
         <template slot="footer">
             <button v-on:click="yes" class="btn btn-success" type="button">V</button>
@@ -749,7 +748,7 @@ Vue.component('ccc-item-list', {
                 item.kind = this.ItemFilter.kind;
                 item.blueprint = true;
                 item.custom = true;
-                this.game.item.push(item);
+                this.game.item.add(item);
             }
         },
         remove: function (item) {
@@ -762,7 +761,6 @@ Vue.component('ccc-item-list', {
 });
 
 </script>
-
 <div id='app'>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -812,78 +810,78 @@ Vue.component('ccc-item-list', {
 </div>
 
 <script>
-    
-const CrateEH = new Vue();
-const BagEH = new Vue();
-const ItemFilter = new Vue({
-    data: {
-        kind: '',
-        kindList: ['All'],
-        item: null
-    },
-    created: function () {
-        this.item = new Entity.List(Facade.Item);
-        this.item.load(ItemList);
 
-        let list = this.item.list;
-        for (let index = 0; index < list.length; index++) {
-            const item = list[index];
-            if (this.kindList.indexOf(item.kind) == -1) {
-                this.kindList.push(item.kind);
-            }
-        }
-        this.kind = this.kindList[1];
-    },
-    computed: {
-        list: function () {
+    const CrateEH = new Vue();
+    const BagEH = new Vue();
+    const ItemFilter = new Vue({
+        data: {
+            kind: '',
+            kindList: ['All'],
+            item: null
+        },
+        created: function () {
+            this.item = new Entity.List(Facade.Item);
+            this.item.load(ItemList);
+
             let list = this.item.list;
-            if (this.kind == 'All') {
-                return list;
-            }
-
-            let array = [];
             for (let index = 0; index < list.length; index++) {
                 const item = list[index];
-                if (this.kind == item.kind) {
-                    array.push(item);
+                if (this.kindList.indexOf(item.kind) == -1) {
+                    this.kindList.push(item.kind);
                 }
             }
-            return array;
+            this.kind = this.kindList[1];
+        },
+        computed: {
+            list: function () {
+                let list = this.item.list;
+                if (this.kind == 'All') {
+                    return list;
+                }
+
+                let array = [];
+                for (let index = 0; index < list.length; index++) {
+                    const item = list[index];
+                    if (this.kind == item.kind) {
+                        array.push(item);
+                    }
+                }
+                return array;
+            }
         }
-    }
-});
+    });
 
-const vvv = new Vue({
-    el: '#app',
-    data: {
-        ready: false,
-        tab: 'index',
-        game: null,
-        crate: null,
-        bag: null,
-        choose: Choose,
-        input: Input,
-    },
-    created: function () {
-        let game = new Facade.Game();
-        game.crate.load(CrateList);
-        game.bag.load(BagList);
+    const vvv = new Vue({
+        el: '#app',
+        data: {
+            ready: false,
+            tab: 'index',
+            game: null,
+            crate: null,
+            bag: null,
+            choose: Choose,
+            input: Input,
+        },
+        created: function () {
+            let game = new Facade.Game();
+            game.crate.load(CrateList);
+            game.bag.load(BagList);
 
-        let me = this;
-        CrateEH.$on('edit', function (crate) {
-            me.crate = crate;
-            me.tab = 'crate';
-        });
-        BagEH.$on('edit', function (bag) {
-            me.bag = bag;
-            me.tab = 'bag';
-        });
+            let me = this;
+            CrateEH.$on('edit', function (crate) {
+                me.crate = crate;
+                me.tab = 'crate';
+            });
+            BagEH.$on('edit', function (bag) {
+                me.bag = bag;
+                me.tab = 'bag';
+            });
 
-        this.game = game;
-        this.tab = 'cratelist';
-        this.ready = true;
-    }
-});
+            this.game = game;
+            this.tab = 'cratelist';
+            this.ready = true;
+        }
+    });
 
 </script>
 

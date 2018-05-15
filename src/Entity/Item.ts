@@ -2,37 +2,38 @@
 namespace Entity {
 
     export class Item {
-        ignoreList: string[];
+        [key: string]: any
+        ignoreList: string[]
 
-        load(data) {
+        load(data: Item) {
             for (let key in data) {
                 if (data.hasOwnProperty(key)) {
                     if (this.ignoreList.indexOf(key) >= 0) {
-                        continue;
+                        continue
                     }
-                    let item = data[key];
+                    let item = data[key]
                     if (this[key] && this[key].load) {
-                        this[key].load(item);
-                        continue;
+                        this[key].load(item)
+                        continue
                     }
-                    this[key] = item;
+                    this[key] = item
                 }
             }
         }
 
         toJSON() {
-            let object: { [key: string]: any } = {};
+            let object: { [key: string]: any } = {}
             for (let key in this) {
                 if (this.hasOwnProperty(key)) {
                     if (this.ignoreList.indexOf(key) >= 0) {
-                        continue;
+                        continue
                     }
-                    object[key] = this[key];
+                    object[key] = this[key]
                 }
             }
-            return object;
+            return object
         }
     }
-    Item.prototype.ignoreList = [];
+    Item.prototype.ignoreList = []
 
 }
