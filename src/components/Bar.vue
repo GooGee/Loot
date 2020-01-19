@@ -8,8 +8,9 @@
             <b-navbar-nav>
                 <b-nav-item @click="bus.tab.show('home')" href="#">Home</b-nav-item>
                 <b-nav-item @click="bus.tab.show('crate')" href="#">Crate</b-nav-item>
+                <b-nav-item @click="bus.tab.show('creature')" href="#">Creature</b-nav-item>
                 <b-nav-item @click="bus.tab.show('set')" href="#">ItemSet</b-nav-item>
-                <b-nav-item @click="bus.tab.show('item')" href="#">Item</b-nav-item>
+                <b-nav-item @click="bus.tab.show('engram')" href="#">Engram</b-nav-item>
             </b-navbar-nav>
 
             <!-- Right aligned nav items -->
