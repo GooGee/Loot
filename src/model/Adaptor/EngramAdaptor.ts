@@ -1,10 +1,13 @@
 import { IEngram } from './IData'
-import EngramManager from '../Ark/EngramManager'
+import Engram from '../Ark/Engram'
+import ArkItemManager from '../Ark/ArkItemManager'
 
 export default class EngramAdaptor {
-    static run(data: IEngram, manager: EngramManager) {
-        const crate = manager.make(data.id)
-        crate.name = data.label
-        manager.add(crate)
+    static run(data: IEngram, manager: ArkItemManager<Engram>) {
+        const item = manager.make(data.class_string)
+        item.label = data.label
+        item.tagxx = data.tags
+        item.mapxx = data.environments
+        manager.add(item)
     }
 }

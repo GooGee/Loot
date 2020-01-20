@@ -1,4 +1,4 @@
-import UniqueItem from '../Entity/UniqueItem'
+import ArkItem from './ArkItem'
 
-export default class Creature extends UniqueItem {
+export default class Creature extends ArkItem {
 }

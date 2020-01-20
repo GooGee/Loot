@@ -1,10 +1,13 @@
 import { ICreature } from './IData'
-import CreatureManager from '../Ark/CreatureManager'
+import Creature from '../Ark/Creature'
+import ArkItemManager from '../Ark/ArkItemManager'
 
 export default class CreatureAdaptor {
-    static run(data: ICreature, manager: CreatureManager) {
-        const crate = manager.make(data.id)
-        crate.name = data.label
-        manager.add(crate)
+    static run(data: ICreature, manager: ArkItemManager<Creature>) {
+        const item = manager.make(data.class_string)
+        item.label = data.label
+        item.tagxx = data.tags
+        item.mapxx = data.environments
+        manager.add(item)
     }
 }

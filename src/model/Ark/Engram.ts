@@ -1,4 +1,4 @@
-import UniqueItem from '../Entity/UniqueItem'
+import ArkItem from './ArkItem'
 
-export default class Engram extends UniqueItem {
+export default class Engram extends ArkItem {
 }
