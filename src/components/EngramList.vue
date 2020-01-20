@@ -22,6 +22,9 @@
                         <b-form-select-option value="">Any Tag</b-form-select-option>
                     </b-form-select>
                 </div>
+                <div class="col-4">
+                    <b-form-input v-on:keyup.enter="search($event.target.value)" placeholder="Search"></b-form-input>
+                </div>
             </div>
         </caption>
         <b-thead>
@@ -77,6 +80,9 @@ export default Vue.extend({
                     }
                 })
             }
+        },
+        search(text) {
+            this.manager.text = text
         },
     },
 })

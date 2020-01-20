@@ -5,6 +5,7 @@ import ArkItem from './ArkItem'
 export default class ArkItemManager<T extends ArkItem> extends UniqueList<T> {
     map: string = 'Island'
     tag: string = ''
+    text: string = ''
     readonly MapManager = new UniqueList<UniqueItem>(UniqueItem)
     readonly TagManager = new UniqueList<UniqueItem>(UniqueItem)
 
@@ -49,6 +50,13 @@ export default class ArkItemManager<T extends ArkItem> extends UniqueList<T> {
                     return false
                 }
                 return true
+            })
+        }
+
+        if (this.text) {
+            const lower = this.text.toLocaleLowerCase()
+            list = list.filter(item => {
+                return item.label.toLocaleLowerCase().includes(lower)
             })
         }
         return list
