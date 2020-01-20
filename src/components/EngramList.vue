@@ -38,6 +38,14 @@
                 </b-td>
             </b-tr>
         </b-tbody>
+        <b-tfoot>
+            <b-tr>
+                <b-td></b-td>
+                <b-td>
+                    <b-button @click="addTag" variant="outline-primary"> + </b-button>
+                </b-td>
+            </b-tr>
+        </b-tfoot>
     </b-table-simple>
 </template>
 
@@ -59,6 +67,17 @@ export default Vue.extend({
         this.manager.tag = 'egg'
     },
     computed: {},
-    methods: {},
+    methods: {
+        addTag() {
+            const tag = prompt('Please input the Tag')
+            if (tag) {
+                this.manager.filtered.forEach(item => {
+                    if (item.tagxx.indexOf(tag) === -1) {
+                        item.tagxx.push(tag)
+                    }
+                })
+            }
+        },
+    },
 })
 </script>
