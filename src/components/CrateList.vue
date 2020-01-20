@@ -1,9 +1,28 @@
 <template>
-    <b-table striped hover caption-top :items="manager.list" :fields="fields">
+    <b-table striped hover caption-top :items="manager.filtered" :fields="fields">
         <template v-slot:table-caption>
-            <select>
-                <option value="">All</option>
-            </select>
+            <div class="row">
+                <div class="col-4">
+                    <b-form-select
+                        v-model="manager.map"
+                        :options="manager.MapManager.list"
+                        value-field="name"
+                        text-field="name"
+                    >
+                        <b-form-select-option value="">All Map</b-form-select-option>
+                    </b-form-select>
+                </div>
+                <div class="col-4">
+                    <b-form-select
+                        v-model="manager.tag"
+                        :options="manager.TagManager.list"
+                        value-field="name"
+                        text-field="name"
+                    >
+                        <b-form-select-option value="">Any Tag</b-form-select-option>
+                    </b-form-select>
+                </div>
+            </div>
         </template>
     </b-table>
 </template>
@@ -20,7 +39,7 @@ export default Vue.extend({
             manager: bus.CrateManager,
             fields: [
                 {
-                    key: 'name',
+                    key: 'label',
                     label: 'Name',
                 },
                 {
