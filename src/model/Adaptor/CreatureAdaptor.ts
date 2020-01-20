@@ -8,6 +8,11 @@ export default class CreatureAdaptor {
         item.label = data.label
         item.tagxx = data.tags
         item.mapxx = data.environments
-        manager.add(item)
+
+        try {
+            manager.add(item)
+        } catch (error) {
+            console.info(error)
+        }
     }
 }

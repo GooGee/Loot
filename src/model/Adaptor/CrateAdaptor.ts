@@ -10,6 +10,11 @@ export default class CrateAdaptor {
         item.mapxx = data.environments
         item.maxQuality = data.multipliers.max
         item.minQuality = data.multipliers.min
-        manager.add(item)
+
+        try {
+            manager.add(item)
+        } catch (error) {
+            console.info(error)
+        }
     }
 }
