@@ -6,11 +6,8 @@
 
         <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav>
-                <b-nav-item @click="bus.tab.show('home')" href="#">Home</b-nav-item>
-                <b-nav-item @click="bus.tab.show('Loot')" href="#">Loot</b-nav-item>
-                <b-nav-item @click="bus.tab.show('creature')" href="#">Creature</b-nav-item>
-                <b-nav-item @click="bus.tab.show('set')" href="#">ItemSet</b-nav-item>
-                <b-nav-item @click="bus.tab.show('engram')" href="#">Engram</b-nav-item>
+                <b-nav-item @click="bus.tab.show('Home')" href="#">Home</b-nav-item>
+                <b-nav-item @click="bus.tab.show('Ark')" href="#">Ark</b-nav-item>
             </b-navbar-nav>
 
             <!-- Right aligned nav items -->

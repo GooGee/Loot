@@ -2,10 +2,8 @@
     <div id="app">
         <Bar />
         
-        <Home v-if="bus.tab.is('home')" />
-        <LootList v-if="bus.tab.is('Loot')" />
-        <CreatureList v-if="bus.tab.is('creature')" />
-        <EngramList v-if="bus.tab.is('engram')" />
+        <Home v-if="bus.tab.is('Home')" />
+        <ArkList v-if="bus.tab.is('Ark')" />
     </div>
 </template>
 
@@ -14,18 +12,14 @@ import Vue from 'vue'
 import bus from './model/bus'
 import Bar from './components/Bar.vue'
 import Home from './components/Home.vue'
-import LootList from './components/LootList.vue'
-import CreatureList from './components/CreatureList.vue'
-import EngramList from './components/EngramList.vue'
+import ArkList from './components/ArkList.vue'
 
 export default Vue.extend({
     name: 'app',
     components: {
       Bar,
       Home,
-      LootList,
-      CreatureList,
-      EngramList,
+      ArkList,
     },
     data() {
         return {

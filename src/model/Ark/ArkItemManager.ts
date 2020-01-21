@@ -3,7 +3,7 @@ import UniqueList from '../Entity/UniqueList'
 import ArkItem from './ArkItem'
 
 export default class ArkItemManager<T extends ArkItem> extends UniqueList<T> {
-    map: string = 'Island'
+    map: string = ''
     tag: string = ''
     text: string = ''
     readonly MapManager = new UniqueList<UniqueItem>(UniqueItem)
