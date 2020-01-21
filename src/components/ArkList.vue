@@ -32,6 +32,7 @@
                 <div class="col-3">
                     <b-form-input
                         v-on:keyup.enter="manager.text = $event.target.value"
+                        :value="manager.text"
                         placeholder="Search"
                     ></b-form-input>
                 </div>
