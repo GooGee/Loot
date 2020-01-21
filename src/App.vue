@@ -1,9 +1,11 @@
 <template>
     <div id="app">
         <Bar />
-        
-        <Home v-if="bus.tab.is('Home')" />
-        <ArkList v-if="bus.tab.is('Ark')" />
+
+        <div class="container">
+            <Home v-if="bus.tab.is('Home')" />
+            <ArkList v-if="bus.tab.is('Ark')" />
+        </div>
     </div>
 </template>
 
@@ -17,9 +19,9 @@ import ArkList from './components/ArkList.vue'
 export default Vue.extend({
     name: 'app',
     components: {
-      Bar,
-      Home,
-      ArkList,
+        Bar,
+        Home,
+        ArkList,
     },
     data() {
         return {
