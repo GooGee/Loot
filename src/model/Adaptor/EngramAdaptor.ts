@@ -6,6 +6,7 @@ export default class EngramAdaptor {
     static run(data: IEngram, manager: ArkItemManager<Engram>) {
         const item = manager.make(data.class_string)
         item.label = data.label
+        item.path = data.path
         item.canBeBluePrint = data.can_blueprint
         item.tagxx = data.tags
         item.mapxx = data.environments

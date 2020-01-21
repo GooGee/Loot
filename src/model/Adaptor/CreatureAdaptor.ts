@@ -6,6 +6,7 @@ export default class CreatureAdaptor {
     static run(data: ICreature, manager: ArkItemManager<Creature>) {
         const item = manager.make(data.class_string)
         item.label = data.label
+        item.path = data.path
         item.tagxx = data.tags
         item.mapxx = data.environments
 
