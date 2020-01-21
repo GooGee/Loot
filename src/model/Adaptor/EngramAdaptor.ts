@@ -9,6 +9,11 @@ export default class EngramAdaptor {
         item.tagxx = data.tags
         item.mapxx = data.environments
 
+        // remove S+
+        if (item.label.includes('S+')) {
+            return
+        }
+
         try {
             manager.add(item)
         } catch (error) {
