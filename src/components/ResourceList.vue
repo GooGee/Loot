@@ -9,7 +9,9 @@
         </b-thead>
         <b-tbody>
             <b-tr v-for="item in manager.filtered" :key="item.name">
-                <b-td>{{ item.label }}</b-td>
+                <b-td>
+                    <b-form-checkbox v-model="item.included">{{ item.label }}</b-form-checkbox>
+                </b-td>
                 <b-td>
                     <b-form-input v-model.number="item.Multiplier" type="number" min="0.01" max="100" step="0.01"></b-form-input>
                 </b-td>
