@@ -8,9 +8,19 @@
             </b-tr>
         </b-thead>
         <b-tbody>
-            <b-tr v-for="item in manager.filtered" :key="item.name">
-                <b-td>{{ item.label }}</b-td>
+            <b-tr v-for="item in manager.list" :key="item.name">
                 <b-td>
+                    <b-form-checkbox v-model="item.included">{{ item.label }}</b-form-checkbox>
+                </b-td>
+                <b-td>
+                    <b-form-select
+                        v-if="selected == item"
+                        v-model="item.ToClassName"
+                        :options="manager.list"
+                        value-field="name"
+                        text-field="label"
+                    ></b-form-select>
+                    <b-button v-else @click="selected = item" variant="outline-secondary"> {{ item.ToClassName || '+' }} </b-button>
                 </b-td>
             </b-tr>
         </b-tbody>
@@ -27,6 +37,7 @@ export default Vue.extend({
         return {
             bus,
             manager: bus.game.CreatureManager,
+            selected: null,
         }
     },
     created() {},
