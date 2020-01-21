@@ -1,16 +1,11 @@
 import Tab from './Tab'
 import Adaptor from './Adaptor/Adaptor'
-import Loot from './Ark/Loot'
-import Creature from './Ark/Creature'
-import Engram from './Ark/Engram'
-import ArkItemManager from './Ark/ArkItemManager'
+import Game from './Ark/Game'
 
 export class Bus {
     tab = new Tab
     private data: Object | null = null
-    readonly LootManager = new ArkItemManager<Loot>(Loot)
-    readonly CreatureManager = new ArkItemManager<Creature>(Creature)
-    readonly EngramManager = new ArkItemManager<Engram>(Engram)
+    readonly game =new Game
 
     constructor() {
         this.loadData()
@@ -21,7 +16,7 @@ export class Bus {
             response.json().then(json => {
                 if (json) {
                     this.data = json
-                    Adaptor.run(this.data as any, this)
+                    Adaptor.run(this.data as any, this.game)
                 }
             })
         }).catch(error => console.error(error))

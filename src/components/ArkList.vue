@@ -4,9 +4,9 @@
             <div class="row">
                 <div class="col-3">
                     <b-form-select v-model="manager">
-                        <b-form-select-option :value="bus.CreatureManager">Creature</b-form-select-option>
-                        <b-form-select-option :value="bus.EngramManager">Engram</b-form-select-option>
-                        <b-form-select-option :value="bus.LootManager">Loot</b-form-select-option>
+                        <b-form-select-option :value="bus.game.CreatureManager">Creature</b-form-select-option>
+                        <b-form-select-option :value="bus.game.EngramManager">Engram</b-form-select-option>
+                        <b-form-select-option :value="bus.game.LootManager">Loot</b-form-select-option>
                     </b-form-select>
                 </div>
                 <div class="col-3">
@@ -74,7 +74,7 @@ export default Vue.extend({
     data() {
         return {
             bus,
-            manager: bus.EngramManager,
+            manager: bus.game.EngramManager,
         }
     },
     created() {

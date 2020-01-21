@@ -1,11 +1,11 @@
-import { Bus } from '../bus'
+import Game from '../Ark/Game'
 import IData from './IData'
 import LootAdaptor from './LootAdaptor'
 import EngramAdaptor from './EngramAdaptor'
 import CreatureAdaptor from './CreatureAdaptor'
 
 export default class Adaptor {
-    static run(data: IData, bus: Bus) {
+    static run(data: IData, bus: Game) {
         data.loot_sources.forEach(item => LootAdaptor.run(item, bus.LootManager))
         console.log(`Loot: ${bus.LootManager.list.length}`)
 
