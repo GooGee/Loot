@@ -1,6 +1,6 @@
 import Tab from './Tab'
 import Adaptor from './Adaptor/Adaptor'
-import Crate from './Ark/Crate'
+import Loot from './Ark/Loot'
 import Creature from './Ark/Creature'
 import Engram from './Ark/Engram'
 import ArkItemManager from './Ark/ArkItemManager'
@@ -8,7 +8,7 @@ import ArkItemManager from './Ark/ArkItemManager'
 export class Bus {
     tab = new Tab
     private data: Object | null = null
-    readonly CrateManager = new ArkItemManager<Crate>(Crate)
+    readonly LootManager = new ArkItemManager<Loot>(Loot)
     readonly CreatureManager = new ArkItemManager<Creature>(Creature)
     readonly EngramManager = new ArkItemManager<Engram>(Engram)
 

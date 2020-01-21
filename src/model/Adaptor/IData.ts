@@ -1,5 +1,5 @@
 export default interface IData {
-    loot_sources: Array<ICrate>
+    loot_sources: Array<ILoot>
     engrams: Array<IEngram>
     creatures: Array<ICreature>
 }
@@ -13,7 +13,7 @@ export interface IItem {
     environments: Array<string>
 }
 
-export interface ICrate extends IItem {
+export interface ILoot extends IItem {
     multipliers: IMinMax
 }
 

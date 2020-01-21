@@ -1,9 +1,9 @@
-import { ICrate } from './IData'
-import Crate from '../Ark/Crate'
+import { ILoot } from './IData'
+import Loot from '../Ark/Loot'
 import ArkItemManager from '../Ark/ArkItemManager'
 
-export default class CrateAdaptor {
-    static run(data: ICrate, manager: ArkItemManager<Crate>) {
+export default class LootAdaptor {
+    static run(data: ILoot, manager: ArkItemManager<Loot>) {
         const item = manager.make(data.class_string)
         item.label = data.label
         item.tagxx = data.tags

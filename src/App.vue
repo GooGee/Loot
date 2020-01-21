@@ -3,7 +3,7 @@
         <Bar />
         
         <Home v-if="bus.tab.is('home')" />
-        <CrateList v-if="bus.tab.is('crate')" />
+        <LootList v-if="bus.tab.is('Loot')" />
         <CreatureList v-if="bus.tab.is('creature')" />
         <EngramList v-if="bus.tab.is('engram')" />
     </div>
@@ -14,7 +14,7 @@ import Vue from 'vue'
 import bus from './model/bus'
 import Bar from './components/Bar.vue'
 import Home from './components/Home.vue'
-import CrateList from './components/CrateList.vue'
+import LootList from './components/LootList.vue'
 import CreatureList from './components/CreatureList.vue'
 import EngramList from './components/EngramList.vue'
 
@@ -23,7 +23,7 @@ export default Vue.extend({
     components: {
       Bar,
       Home,
-      CrateList,
+      LootList,
       CreatureList,
       EngramList,
     },

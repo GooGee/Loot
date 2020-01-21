@@ -32,11 +32,11 @@ import Vue from 'vue'
 import bus from '../model/bus'
 
 export default Vue.extend({
-    name: 'CrateList',
+    name: 'LootList',
     data() {
         return {
             bus,
-            manager: bus.CrateManager,
+            manager: bus.LootManager,
             fields: [
                 {
                     key: 'label',
