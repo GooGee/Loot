@@ -1,5 +1,5 @@
 export default class Tab {
-    name: string = 'home'
+    name: string = 'Home'
 
     is(tab: string) {
         return this.name == tab
