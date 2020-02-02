@@ -1,6 +1,9 @@
 <template>
     <b-table-simple hover caption-top>
-        <caption></caption>
+        <caption>
+            <h1>Change Harvest Rate</h1>
+            <p>"HarvestResourceItemAmountClassMultipliers"</p>
+        </caption>
         <b-thead>
             <b-tr>
                 <b-th width="30%">Name</b-th>
