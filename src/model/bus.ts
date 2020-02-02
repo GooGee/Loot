@@ -1,11 +1,14 @@
 import Tab from './Tab'
 import Adaptor from './Adaptor/Adaptor'
 import Game from './Ark/Game'
+import Loot from './Ark/Loot'
 
 export class Bus {
-    tab = new Tab
-    private data: Object | null = null
+    readonly tab = new Tab
     readonly game = new Game
+    private data: Object | null = null
+
+    loot: Loot | null = null
 
     constructor() {
         this.load()
@@ -20,6 +23,11 @@ export class Bus {
                 }
             })
         }).catch(error => console.error(error))
+    }
+
+    editLoot(loot: Loot) {
+        this.loot = loot
+        this.tab.show('Loot')
     }
 }
 

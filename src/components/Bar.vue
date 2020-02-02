@@ -19,6 +19,9 @@
                     <b-nav-item :class="{ active: bus.tab.is('Resource') }" @click="bus.tab.show('Resource')" href="#">
                         Resource
                     </b-nav-item>
+                    <b-nav-item :class="{ active: bus.tab.is('LootList') }" @click="bus.tab.show('LootList')" href="#">
+                        Loot
+                    </b-nav-item>
                 </b-navbar-nav>
 
                 <!-- Right aligned nav items -->

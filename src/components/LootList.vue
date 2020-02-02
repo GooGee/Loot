@@ -1,0 +1,61 @@
+<template>
+    <b-table-simple hover caption-top>
+        <caption>
+            <h1>Change Loot Crate</h1>
+            <p>"ConfigOverrideSupplyCrateItems"</p>
+        </caption>
+        <b-thead>
+            <b-tr>
+                <b-th width="30%">Name</b-th>
+                <b-th>Quality</b-th>
+                <b-th>Amount</b-th>
+                <b-th>ItemSet List</b-th>
+            </b-tr>
+        </b-thead>
+        <b-tbody>
+            <b-tr v-for="loot in manager.filtered" :key="loot.name">
+                <b-td>
+                    <b-form-checkbox v-model="loot.included">{{ loot.label }}</b-form-checkbox>
+                </b-td>
+                <b-td>
+                    <b-form-input v-model.number="loot.minQuality" type="number" min="1" max="10" step="0.05"></b-form-input>
+                    <b-form-input v-model.number="loot.maxQuality" type="number" min="1" max="10" step="0.05"></b-form-input>
+                </b-td>
+                <b-td>
+                    <b-form-input v-model.number="loot.MinItemSets" type="number" min="1" max="100" step="1"></b-form-input>
+                    <b-form-input v-model.number="loot.MaxItemSets" type="number" min="1" max="100" step="1"></b-form-input>
+                </b-td>
+                <b-td>
+                    <div>
+                        <b-button @click="bus.editLoot(loot)" variant="outline-primary"> Edit </b-button>
+                    </div>
+                    <ul>
+                        <li v-for="set in loot.ItemSetManager.list" :key="set.name">{{ set.label }}</li>
+                    </ul>
+                </b-td>
+            </b-tr>
+        </b-tbody>
+    </b-table-simple>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+import bus from '../model/bus'
+
+export default Vue.extend({
+    name: 'LootList',
+    data() {
+        return {
+            bus,
+            manager: bus.game.LootManager,
+        }
+    },
+    created() {
+        this.manager.map = 'Island'
+        this.manager.tag = ''
+        this.manager.text = ''
+    },
+    computed: {},
+    methods: {},
+})
+</script>
