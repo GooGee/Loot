@@ -35,12 +35,10 @@ export default class Item {
                 // do not change
             } else {
                 if (source.hasOwnProperty(name)) {
-                    if (Array.isArray(me[name])) {
-                        this.loadArray(me[name], source[name])
-                    } else if (me[name] instanceof Item) {
+                    if (me[name] instanceof Item) {
                         this.loadItem(me[name], source[name])
                     } else if (me[name] instanceof ItemList) {
-                        this.loadList(me[name], source[name])
+                        me[name].load(source[name])
                     } else {
                         // TypeError: 0 is read-only
                         // Object.assign(me[name], source[name])
@@ -49,16 +47,6 @@ export default class Item {
                 }
             }
         }
-    }
-
-    loadArray(list: Array<string>, source: Array<string>) {
-        source.forEach(item => {
-            list.push(item)
-        })
-    }
-
-    loadList(me: ItemList<Item>, source: ItemList<Item>) {
-        me.load(source)
     }
 
     toJSON(key: string) {
