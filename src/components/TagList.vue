@@ -1,7 +1,7 @@
 <template>
     <b-button-group>
-        <b-button v-for="tag in list" @click="remove(tag)" :key="tag" variant="outline-secondary">{{ tag }}</b-button>
         <b-button @click="add" variant="outline-primary"> + </b-button>
+        <b-button v-for="tag in list" @click="remove(tag)" :key="tag" variant="outline-success">{{ tag }}</b-button>
     </b-button-group>
 </template>
 

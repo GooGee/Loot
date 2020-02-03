@@ -23,7 +23,7 @@
                         value-field="name"
                         text-field="label"
                     ></b-form-select>
-                    <b-button v-else @click="selected = item" variant="outline-secondary"> {{ item.ToClassName || '+' }} </b-button>
+                    <b-button v-else @click="selected = item" variant="outline-primary"> {{ item.ToClassName || '+' }} </b-button>
                 </b-td>
             </b-tr>
         </b-tbody>

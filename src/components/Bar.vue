@@ -22,6 +22,9 @@
                     <b-nav-item :class="{ active: bus.tab.is('LootList') }" @click="bus.tab.show('LootList')" href="#">
                         Loot
                     </b-nav-item>
+                    <b-nav-item :class="{ active: bus.tab.is('ItemSetList') }" @click="bus.tab.show('ItemSetList')" href="#">
+                        ItemSet
+                    </b-nav-item>
                 </b-navbar-nav>
 
                 <!-- Right aligned nav items -->

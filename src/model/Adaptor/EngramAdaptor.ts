@@ -11,8 +11,8 @@ export default class EngramAdaptor {
         item.tagxx = data.tags
         item.mapxx = data.environments
 
-        // remove S+
-        if (item.label.includes('S+')) {
+        // remove mod
+        if (item.path.includes('/Game/Mods/')) {
             return
         }
 

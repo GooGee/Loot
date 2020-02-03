@@ -1,42 +1,7 @@
 <template>
     <b-table-simple hover caption-top>
         <caption>
-            <div class="row">
-                <div class="col-3">
-                    <b-form-select v-model="manager">
-                        <b-form-select-option :value="bus.game.CreatureManager">Creature</b-form-select-option>
-                        <b-form-select-option :value="bus.game.EngramManager">Engram</b-form-select-option>
-                        <b-form-select-option :value="bus.game.LootManager">Loot</b-form-select-option>
-                    </b-form-select>
-                </div>
-                <div class="col-3">
-                    <b-form-select
-                        v-model="manager.map"
-                        :options="manager.MapManager.list"
-                        value-field="name"
-                        text-field="name"
-                    >
-                        <b-form-select-option value="">All Map</b-form-select-option>
-                    </b-form-select>
-                </div>
-                <div class="col-3">
-                    <b-form-select
-                        v-model="manager.tag"
-                        :options="manager.TagManager.list"
-                        value-field="name"
-                        text-field="name"
-                    >
-                        <b-form-select-option value="">Any Tag</b-form-select-option>
-                    </b-form-select>
-                </div>
-                <div class="col-3">
-                    <b-form-input
-                        v-on:keyup.enter="manager.text = $event.target.value"
-                        :value="manager.text"
-                        placeholder="Search"
-                    ></b-form-input>
-                </div>
-            </div>
+            <EngramFilter :manager="manager"></EngramFilter>
         </caption>
         <b-thead>
             <b-tr>
@@ -66,11 +31,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import bus from '../model/bus'
+import EngramFilter from './EngramFilter.vue'
 import TagList from './TagList.vue'
 
 export default Vue.extend({
     name: 'ArkList',
-    components: { TagList },
+    components: { EngramFilter, TagList },
     data() {
         return {
             bus,
@@ -83,13 +49,19 @@ export default Vue.extend({
     computed: {},
     methods: {
         addTag() {
-            const tag = prompt('Please input the Tag')
-            if (tag) {
+            const name = prompt('Please input the Tag')
+            if (name) {
                 this.manager.filtered.forEach(item => {
-                    if (item.tagxx.indexOf(tag) === -1) {
-                        item.tagxx.push(tag)
+                    if (item.tagxx.indexOf(name) === -1) {
+                        item.tagxx.push(name)
                     }
                 })
+                try {
+                    const tag = this.manager.TagManager.make(name)
+                    this.manager.TagManager.add(tag)
+                } catch (error) {
+                    console.error(error)
+                }
             }
         },
     },
