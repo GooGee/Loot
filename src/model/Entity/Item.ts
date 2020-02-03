@@ -31,19 +31,15 @@ export default class Item {
 
         const descriptor = Object.getOwnPropertyDescriptor(me, name)
         if (descriptor) {
-            if (descriptor.get || descriptor.set) {
-                // do not change
-            } else {
-                if (source.hasOwnProperty(name)) {
-                    if (me[name] instanceof Item) {
-                        this.loadItem(me[name], source[name])
-                    } else if (me[name] instanceof ItemList) {
-                        me[name].load(source[name])
-                    } else {
-                        // TypeError: 0 is read-only
-                        // Object.assign(me[name], source[name])
-                        me[name] = source[name]
-                    }
+            if (source.hasOwnProperty(name)) {
+                if (me[name] instanceof Item) {
+                    this.loadItem(me[name], source[name])
+                } else if (me[name] instanceof ItemList) {
+                    me[name].load(source[name])
+                } else {
+                    // TypeError: 0 is read-only
+                    // Object.assign(me[name], source[name])
+                    me[name] = source[name]
                 }
             }
         }

@@ -29,9 +29,8 @@ export default Vue.extend({
             const file = event.target.files[0]
             this.read(file, json => {
                 try {
-                    const game = new Game()
-                    game.load(json)
-                    bus.game = game
+                    bus.game.clear()
+                    bus.game.load(json)
                 } catch (error) {
                     this.$bvToast.toast(error)
                 }

@@ -1,13 +1,11 @@
 import Tab from './Tab'
-import Adaptor from './Adaptor/Adaptor'
 import Game from './Ark/Game'
 import Loot from './Ark/Loot'
 import ItemSet from './Ark/ItemSet'
 
 export class Bus {
     readonly tab = new Tab
-    game = new Game
-    private data: Object | null = null
+    readonly game = new Game
 
     loot: Loot | null = null
     set: ItemSet | null = null
@@ -19,11 +17,8 @@ export class Bus {
     load() {
         fetch('data.json').then(response => {
             response.json().then(json => {
-                if (json) {
-                    this.data = json
-                    Adaptor.run(this.data as any, this.game)
-                }
-            })
+                this.game.load(json)
+            }).catch(error => console.error(error))
         }).catch(error => console.error(error))
     }
 

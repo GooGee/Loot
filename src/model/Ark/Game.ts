@@ -11,4 +11,10 @@ export default class Game extends Item {
     readonly LootManager = new ArkItemManager<Loot>(Loot)
     readonly ItemSetManager = new ArkItemManager<ItemSet>(ItemSet)
 
+    clear() {
+        this.CreatureManager.clear()
+        this.EngramManager.clear()
+        this.LootManager.clear()
+        this.ItemSetManager.clear()
+    }
 }
