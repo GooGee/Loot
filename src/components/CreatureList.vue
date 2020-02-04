@@ -3,6 +3,14 @@
         <caption>
             <h1>Replace Creature</h1>
             <p>"NPCReplacements"</p>
+            <div>
+                <b-form-select
+                    v-model="manager.map"
+                    :options="manager.MapManager.list"
+                    value-field="name"
+                    text-field="name"
+                ></b-form-select>
+            </div>
         </caption>
         <b-thead>
             <b-tr>
@@ -11,7 +19,7 @@
             </b-tr>
         </b-thead>
         <b-tbody>
-            <b-tr v-for="item in manager.list" :key="item.name">
+            <b-tr v-for="item in manager.filtered" :key="item.name">
                 <b-td>
                     <b-form-checkbox v-model="item.included">{{ item.label }}</b-form-checkbox>
                 </b-td>
@@ -19,7 +27,7 @@
                     <b-form-select
                         v-if="selected == item"
                         v-model="item.ToClassName"
-                        :options="manager.list"
+                        :options="manager.filtered"
                         value-field="name"
                         text-field="label"
                     ></b-form-select>
@@ -43,7 +51,11 @@ export default Vue.extend({
             selected: null,
         }
     },
-    created() {},
+    created() {
+        this.manager.map = 'Island'
+        this.manager.tag = ''
+        this.manager.text = ''
+    },
     computed: {},
     methods: {},
 })
