@@ -33,6 +33,12 @@ export default class ArkItemManager<T extends ArkItem> extends UniqueList<T> {
         })
     }
 
+    clear() {
+        super.clear()
+        this.MapManager.clear()
+        this.TagManager.clear()
+    }
+
     get filtered() {
         let list = this.list
         if (this.map) {

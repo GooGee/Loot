@@ -17,6 +17,7 @@ export class Bus {
     load() {
         fetch('data.json').then(response => {
             response.json().then(json => {
+                this.game.clear()
                 this.game.load(json)
             }).catch(error => console.error(error))
         }).catch(error => console.error(error))
