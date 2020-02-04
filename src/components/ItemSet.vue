@@ -97,7 +97,7 @@ export default Vue.extend({
     methods: {
         add(item) {
             try {
-                this.manager.add(item)
+                bus.game.addEngramToSet(item, bus.set)
             } catch (error) {
                 alert(error)
             }

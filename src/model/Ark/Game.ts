@@ -19,6 +19,13 @@ export default class Game extends Item {
         this.ItemSetManager.clear()
     }
 
+    addEngramToSet(engram: Engram, set: ItemSet) {
+        const item = set.EntryManager.make(engram.name)
+        item.label = engram.label
+        item.canBeBluePrint = engram.canBeBluePrint
+        set.EntryManager.add(item)
+    }
+
     updateLoot() {
         this.LootManager.list.forEach(loot => {
             loot.update(this.ItemSetManager)
