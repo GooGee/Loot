@@ -11,11 +11,13 @@ export default class ItemSet extends ArkItem {
     MaxNumItems: number = 1
 
     deploy(loot: Loot) {
+        const min = Math.ceil(this.EntryManager.list.length / loot.minAmountFactor)
+        const max = Math.ceil(this.EntryManager.list.length / loot.maxAmountFactor)
         return {
             SetName: this.label,
             SetWeight: this.SetWeight,
-            MinNumItems: this.MinNumItems,
-            MaxNumItems: this.MaxNumItems,
+            MinNumItems: min,
+            MaxNumItems: max,
             NumItemsPower: 1.0,
             bItemsRandomWithoutReplacement: true,
             ItemEntries: this.EntryManager.list.map(entry => entry.deploy(loot)),

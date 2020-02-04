@@ -8,6 +8,9 @@ export default class Loot extends ArkItem {
     originalMinQuality: number = 1
     originalMaxQuality: number = 1
 
+    minAmountFactor: number = 8
+    maxAmountFactor: number = 4
+
     SupplyLootClassString: string = ''
     MinItemSets: number = 1
     MaxItemSets: number = 1
