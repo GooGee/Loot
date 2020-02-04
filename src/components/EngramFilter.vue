@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <slot></slot>
-        <div class="col-3">
+        <div :class="css">
             <b-form-select
                 v-model="manager.map"
                 :options="manager.MapManager.list"
@@ -11,7 +11,7 @@
                 <b-form-select-option value="">All Map</b-form-select-option>
             </b-form-select>
         </div>
-        <div class="col-3">
+        <div :class="css">
             <b-form-select
                 v-model="manager.tag"
                 :options="manager.TagManager.list"
@@ -21,7 +21,7 @@
                 <b-form-select-option value="">Any Tag</b-form-select-option>
             </b-form-select>
         </div>
-        <div class="col-3">
+        <div :class="css">
             <b-form-input
                 v-on:keyup.enter="manager.text = $event.target.value"
                 :value="manager.text"
@@ -40,6 +40,18 @@ export default Vue.extend({
         manager: {
             type: Object,
             required: true,
+        },
+        inline: {
+            type: Boolean,
+            default: true,
+        },
+    },
+    computed: {
+        css() {
+            if (this.inline) {
+                return 'col-3'
+            }
+            return 'col-12'
         },
     },
 })
