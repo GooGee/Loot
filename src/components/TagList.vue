@@ -29,12 +29,10 @@ export default Vue.extend({
             }
         },
         remove(tag) {
-            this.$bvModal.msgBoxConfirm('Are you sure you want to remove it?').then(result => {
-                if (result) {
-                    const index = this.list.indexOf(tag)
-                    this.list.splice(index, 1)
-                }
-            })
+            if (confirm('Are you sure you want to remove it?')) {
+                const index = this.list.indexOf(tag)
+                this.list.splice(index, 1)
+            }
         },
     },
 })
