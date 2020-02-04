@@ -24,6 +24,11 @@ export default class Loot extends ArkItem {
         return this.maxQuality / this.originalMaxQuality
     }
 
+    reset() {
+        this.minQuality = this.originalMinQuality
+        this.maxQuality = this.originalMaxQuality
+    }
+
     pack() {
         return {
             SupplyLootClassString: this.SupplyLootClassString,
