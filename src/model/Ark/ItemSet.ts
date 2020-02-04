@@ -1,10 +1,10 @@
 import ArkItem from './ArkItem'
-import ArkItemManager from './ArkItemManager'
-import Engram from './Engram'
 import Loot from './Loot'
+import Entry from './Entry'
+import UniqueList from '../Entity/UniqueList'
 
 export default class ItemSet extends ArkItem {
-    readonly EntryManager = new ArkItemManager<Engram>(Engram)
+    readonly EntryManager = new UniqueList<Entry>(Entry)
 
     SetWeight: number = 1
     MinNumItems: number = 1
