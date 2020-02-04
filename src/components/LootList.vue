@@ -11,6 +11,18 @@
                     text-field="name"
                 ></b-form-select>
             </div>
+            <b-modal id="loot-modal" hide-footer title="Select a source Loot">
+                <b-list-group>
+                    <b-list-group-item v-for="loot in lootxx" @click="select(loot)" :key="loot.name">
+                        {{ loot.label }}
+                    </b-list-group-item>
+                </b-list-group>
+                <div>
+                    <b-button class="mt-3" variant="outline-danger" @click="$bvModal.hide('loot-modal')">
+                        Close
+                    </b-button>
+                </div>
+            </b-modal>
         </caption>
         <b-thead>
             <b-tr>
@@ -62,9 +74,10 @@
                     ></b-form-input>
                 </b-td>
                 <b-td>
-                    <div>
+                    <b-button-group>
                         <b-button @click="bus.editLoot(loot)" variant="outline-primary"> Edit </b-button>
-                    </div>
+                        <b-button @click="copy(loot)" variant="outline-success"> Load </b-button>
+                    </b-button-group>
                     <ul>
                         <li v-for="set in loot.ItemSetManager.list" :key="set.name">{{ set.label }}</li>
                     </ul>
@@ -98,6 +111,7 @@ export default Vue.extend({
         return {
             bus,
             manager: bus.game.LootManager,
+            destination: null,
         }
     },
     created() {
@@ -105,8 +119,21 @@ export default Vue.extend({
         this.manager.tag = ''
         this.manager.text = ''
     },
-    computed: {},
+    computed: {
+        lootxx() {
+            return bus.game.LootManager.list.filter(loot => loot.ItemSetManager.list.length)
+        },
+    },
     methods: {
+        copy(destination) {
+            this.destination = destination
+            this.$bvModal.show('loot-modal')
+        },
+        select(loot) {
+            this.$bvModal.hide('loot-modal')
+            this.destination.ItemSetManager.clear()
+            this.destination.ItemSetManager.load(loot.ItemSetManager)
+        },
         setMin() {
             const value = prompt('Please input the Min Amount', 1)
             if (value !== null) {
