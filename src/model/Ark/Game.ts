@@ -17,4 +17,10 @@ export default class Game extends Item {
         this.LootManager.clear()
         this.ItemSetManager.clear()
     }
+
+    updateLoot() {
+        this.LootManager.list.forEach(loot => {
+            loot.update(this.ItemSetManager)
+        })
+    }
 }

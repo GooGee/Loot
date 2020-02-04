@@ -80,7 +80,9 @@
                 <b-td>
                     <b-button @click="setMax" variant="outline-primary"> Set </b-button>
                 </b-td>
-                <b-td></b-td>
+                <b-td>
+                    <b-button @click="bus.game.updateLoot()" variant="outline-primary"> Update </b-button>
+                </b-td>
             </b-tr>
         </b-tfoot>
     </b-table-simple>

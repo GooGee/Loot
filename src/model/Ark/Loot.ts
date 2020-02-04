@@ -24,6 +24,16 @@ export default class Loot extends ArkItem {
         return this.maxQuality / this.originalMaxQuality
     }
 
+    update(manager: ArkItemManager<ItemSet>) {
+        this.ItemSetManager.list.forEach(set => {
+            const found = manager.find(set.name)
+            if (found) {
+                set.EntryManager.clear()
+                set.EntryManager.load(found.EntryManager)
+            }
+        })
+    }
+
     reset() {
         this.minQuality = this.originalMinQuality
         this.maxQuality = this.originalMaxQuality
