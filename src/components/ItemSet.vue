@@ -48,7 +48,9 @@
         </b-tbody>
         <b-tfoot>
             <b-tr>
-                <b-td></b-td>
+                <b-td>
+                    <b-button @click="removeAll" variant="outline-danger"> - All </b-button>
+                </b-td>
                 <b-td>
                     <b-button @click="setWeight" variant="outline-primary"> Set </b-button>
                 </b-td>
@@ -102,6 +104,11 @@ export default Vue.extend({
         remove(item) {
             if (confirm('Are you sure?')) {
                 this.manager.remove(item)
+            }
+        },
+        removeAll() {
+            if (confirm('Are you sure?')) {
+                this.manager.clear()
             }
         },
         setWeight() {
