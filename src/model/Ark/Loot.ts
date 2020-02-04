@@ -1,6 +1,6 @@
 import ArkItem from './ArkItem'
-import ArkItemManager from './ArkItemManager'
 import ItemSet from './ItemSet'
+import UniqueList from '../Entity/UniqueList'
 
 export default class Loot extends ArkItem {
     minQuality: number = 1
@@ -14,7 +14,7 @@ export default class Loot extends ArkItem {
     SupplyLootClassString: string = ''
     MinItemSets: number = 1
     MaxItemSets: number = 1
-    readonly ItemSetManager = new ArkItemManager<ItemSet>(ItemSet)
+    readonly ItemSetManager = new UniqueList<ItemSet>(ItemSet)
 
     get minRate() {
         return this.minQuality / this.originalMinQuality
@@ -24,7 +24,7 @@ export default class Loot extends ArkItem {
         return this.maxQuality / this.originalMaxQuality
     }
 
-    update(manager: ArkItemManager<ItemSet>) {
+    update(manager: UniqueList<ItemSet>) {
         this.ItemSetManager.list.forEach(set => {
             const found = manager.find(set.name)
             if (found) {

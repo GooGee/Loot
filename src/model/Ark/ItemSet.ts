@@ -1,9 +1,10 @@
-import ArkItem from './ArkItem'
 import Loot from './Loot'
 import Entry from './Entry'
+import UniqueItem from '../Entity/UniqueItem'
 import UniqueList from '../Entity/UniqueList'
 
-export default class ItemSet extends ArkItem {
+export default class ItemSet extends UniqueItem {
+    label: string = ''
     readonly EntryManager = new UniqueList<Entry>(Entry)
 
     SetWeight: number = 1
