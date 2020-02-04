@@ -11,6 +11,15 @@ export default class Engram extends ArkItem {
 
     Multiplier: number = 1
 
+    get quantity() {
+        return this.MinQuantity
+    }
+
+    set quantity(value: number) {
+        this.MinQuantity = value
+        this.MaxQuantity = value
+    }
+
     deployHarvest() {
         return `HarvestResourceItemAmountClassMultipliers=(ClassName="${this.name}",Multiplier=${this.Multiplier})`
     }

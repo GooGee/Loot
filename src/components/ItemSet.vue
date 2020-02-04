@@ -16,7 +16,7 @@
             <b-tr>
                 <b-th width="30%">Name</b-th>
                 <b-th>Weight</b-th>
-                <b-th colspan="2">Amount (min - max)</b-th>
+                <b-th>Amount</b-th>
                 <b-th>Blueprint Chance</b-th>
             </b-tr>
         </b-thead>
@@ -29,10 +29,7 @@
                     <b-form-input v-model.number="item.EntryWeight" type="number" min="1" step="1"></b-form-input>
                 </b-td>
                 <b-td>
-                    <b-form-input v-model.number="item.MinQuantity" type="number" min="1" step="1"></b-form-input>
-                </b-td>
-                <b-td>
-                    <b-form-input v-model.number="item.MaxQuantity" type="number" min="1" step="1"></b-form-input>
+                    <b-form-input v-model.number="item.quantity" type="number" min="1" step="1"></b-form-input>
                 </b-td>
                 <b-td>
                     <b-form-input
@@ -55,10 +52,7 @@
                     <b-button @click="setWeight" variant="outline-primary"> Set </b-button>
                 </b-td>
                 <b-td>
-                    <b-button @click="setMin" variant="outline-primary"> Set </b-button>
-                </b-td>
-                <b-td>
-                    <b-button @click="setMax" variant="outline-primary"> Set </b-button>
+                    <b-button @click="setQuantity" variant="outline-primary"> Set </b-button>
                 </b-td>
                 <b-td>
                     <b-button @click="setChance" variant="outline-primary"> Set </b-button>
@@ -119,19 +113,11 @@ export default Vue.extend({
                 })
             }
         },
-        setMin() {
-            const value = prompt('Please input the Min Amount', 1)
+        setQuantity() {
+            const value = prompt('Please input the Amount', 1)
             if (value !== null) {
                 this.manager.list.forEach(item => {
-                    item.MinQuantity = parseInt(value)
-                })
-            }
-        },
-        setMax() {
-            const value = prompt('Please input the Max Amount', 1)
-            if (value !== null) {
-                this.manager.list.forEach(item => {
-                    item.MaxQuantity = parseInt(value)
+                    item.quantity = parseInt(value)
                 })
             }
         },
