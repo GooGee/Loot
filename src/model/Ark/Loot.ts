@@ -11,7 +11,6 @@ export default class Loot extends ArkItem {
     minAmountFactor: number = 8
     maxAmountFactor: number = 4
 
-    SupplyLootClassString: string = ''
     MinItemSets: number = 1
     MaxItemSets: number = 1
     readonly ItemSetManager = new UniqueList<ItemSet>(ItemSet)
@@ -41,7 +40,7 @@ export default class Loot extends ArkItem {
 
     pack() {
         return {
-            SupplyLootClassString: this.SupplyLootClassString,
+            SupplyCrateClassString: this.name,
             MinItemSets: this.MinItemSets,
             MaxItemSets: this.MaxItemSets,
             NumItemSetsPower: 1.0,
@@ -61,8 +60,8 @@ export default class Loot extends ArkItem {
         line = this.replace(line, '\\[', '(');
         line = this.replace(line, '\\}', ')');
         line = this.replace(line, '\\]', ')');
-        line = this.replace(line, '"(.+?)":', '$1=');
-        return 'ConfigOverrideSupplyLootItems=' + line;
+        line = this.replace(line, '"([A-Za-z]+)":', '$1=');
+        return 'ConfigOverrideSupplyCrateItems=' + line;
     }
 
 }

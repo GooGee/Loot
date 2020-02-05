@@ -31,4 +31,33 @@ export default class Game extends Item {
             loot.update(this.ItemSetManager)
         })
     }
+
+    deployCreature() {
+        const list = this.CreatureManager.list
+            .filter(item => item.included)
+            .map(item => item.deploy())
+        return list.join('\n')
+    }
+
+    deployHarvest() {
+        const list = this.EngramManager.list
+            .filter(item => item.included)
+            .map(item => item.deploy())
+        return list.join('\n')
+    }
+
+    deployLoot() {
+        const list = this.LootManager.list
+            .filter(item => item.included)
+            .map(item => item.deploy())
+        return list.join('\n')
+    }
+
+    deploy() {
+        const list: Array<string> = []
+        list.push(this.deployCreature())
+        list.push(this.deployHarvest())
+        list.push(this.deployLoot())
+        return list.join('\n')
+    }
 }

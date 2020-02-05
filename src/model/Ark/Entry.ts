@@ -27,8 +27,8 @@ export default class Entry extends UniqueItem {
             MaxQuantity: this.MaxQuantity,
             MinQuality: loot.minRate,
             MaxQuality: loot.maxRate,
-            ChanceToBeBlueprintOverride: this.ChanceToBeBlueprintOverride,
             bForceBlueprint: false,
+            ChanceToBeBlueprintOverride: this.ChanceToBeBlueprintOverride,
             ItemClassStrings: [this.name],
             ItemsWeights: [1],
         }

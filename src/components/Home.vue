@@ -9,6 +9,14 @@
             </b-button-group>
             <b-form-file @change="load($event)" accept=".json"></b-form-file>
         </div>
+        <b-modal id="deploy-modal" hide-footer size="xl" title="Paste the text to Game.ini">
+            <textarea v-model="text" class="form-control" rows="16"></textarea>
+            <div>
+                <b-button class="mt-3" variant="outline-danger" @click="$bvModal.hide('deploy-modal')">
+                    Close
+                </b-button>
+            </div>
+        </b-modal>
     </div>
 </template>
 
@@ -22,6 +30,7 @@ export default Vue.extend({
     data() {
         return {
             bus,
+            text: '',
         }
     },
     methods: {
@@ -58,7 +67,10 @@ export default Vue.extend({
             link.click()
             URL.revokeObjectURL(link.href)
         },
-        deploy() {},
+        deploy() {
+            this.text = bus.game.deploy()
+            this.$bvModal.show('deploy-modal')
+        },
     },
 })
 </script>
