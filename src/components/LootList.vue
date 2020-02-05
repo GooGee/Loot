@@ -79,7 +79,11 @@
         </b-tbody>
         <b-tfoot>
             <b-tr>
-                <b-td colspan="3"></b-td>
+                <b-td>
+                    <b-button @click="selectAll" variant="outline-primary"> All </b-button>
+                </b-td>
+                <b-td></b-td>
+                <b-td></b-td>
                 <b-td>
                     <b-button @click="setMin" variant="outline-primary"> Set </b-button>
                 </b-td>
@@ -107,6 +111,7 @@ export default Vue.extend({
             bus,
             manager: bus.game.LootManager,
             destination: null,
+            includeAll: false,
         }
     },
     created() {},
@@ -124,6 +129,10 @@ export default Vue.extend({
             this.$bvModal.hide('loot-modal')
             this.destination.ItemSetManager.clear()
             this.destination.ItemSetManager.load(loot.ItemSetManager)
+        },
+        selectAll() {
+            this.includeAll = !this.includeAll
+            this.manager.filtered.forEach(loot => (loot.included = this.includeAll))
         },
         setMin() {
             const value = prompt('Please input the Min Amount', '1')
