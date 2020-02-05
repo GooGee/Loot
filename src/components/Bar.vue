@@ -22,7 +22,7 @@
                     <b-nav-item :class="{ active: bus.tab.is('LootList') }" @click="bus.tab.show('LootList')" href="#">
                         Loot
                     </b-nav-item>
-                    <b-nav-item :class="{ active: bus.tab.is('ItemSetList') }" @click="bus.tab.show('ItemSetList')" href="#">
+                    <b-nav-item :class="{ active: bus.tab.is('ItemSet') }" @click="bus.tab.show('ItemSet')" href="#">
                         ItemSet
                     </b-nav-item>
                 </b-navbar-nav>

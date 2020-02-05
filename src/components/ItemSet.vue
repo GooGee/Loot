@@ -1,10 +1,27 @@
 <template>
     <div class="row">
-        <div class="col-8">
+        <div class="col-12">
+            <br />
+            <div class="row">
+                <div class="col-4">
+                    <b-form-select v-model="selected">
+                        <b-form-select-option v-for="set in bus.game.ItemSetManager.list" :value="set" :key="set.name">
+                            {{ set.label }}
+                        </b-form-select-option>
+                    </b-form-select>
+                </div>
+                <div class="col-4">
+                    <b-button-group>
+                        <b-button @click="addSet" variant="outline-primary"> + </b-button>
+                        <b-button @click="changeName" variant="outline-success"> Name </b-button>
+                        <b-button @click="removeSet" variant="outline-danger"> - </b-button>
+                    </b-button-group>
+                </div>
+            </div>
+            <br />
+        </div>
+        <div v-if="selected" class="col-8">
             <b-table-simple hover caption-top>
-                <caption>
-                    <h1>{{ bus.set.label }}</h1>
-                </caption>
                 <b-thead>
                     <b-tr>
                         <b-th width="40%">Name</b-th>
@@ -59,7 +76,7 @@
                 </b-tfoot>
             </b-table-simple>
         </div>
-        <div class="col-4">
+        <div v-if="selected" class="col-4">
             <h4>Item</h4>
             <EngramFilter :manager="bus.game.EngramManager" :inline="false"></EngramFilter>
             <ul>
@@ -85,15 +102,19 @@ export default Vue.extend({
     data() {
         return {
             bus,
-            manager: bus.set.EntryManager,
+            selected: null,
         }
     },
     created() {},
-    computed: {},
+    computed: {
+        manager() {
+            return this.selected.EntryManager
+        },
+    },
     methods: {
         add(item) {
             try {
-                bus.game.addEngramToSet(item, bus.set)
+                bus.game.addEngramToSet(item, this.selected)
             } catch (error) {
                 alert(error)
             }
@@ -137,6 +158,29 @@ export default Vue.extend({
                         item.ChanceToBeBlueprintOverride = parseFloat(value)
                     }
                 })
+            }
+        },
+        addSet() {
+            const now = new Date()
+            const set = bus.game.ItemSetManager.make(now.toISOString())
+            set.label = 'ItemSet 1'
+            bus.game.ItemSetManager.add(set)
+            this.selected = set
+        },
+        changeName() {
+            if (this.selected) {
+                const name = prompt('Please input the name', this.selected.label)
+                if (name) {
+                    this.selected.label = name
+                }
+            }
+        },
+        removeSet() {
+            if (this.selected) {
+                if (confirm('Are you sure?')) {
+                    bus.game.ItemSetManager.remove(this.selected)
+                    this.selected = null
+                }
             }
         },
     },

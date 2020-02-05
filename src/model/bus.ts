@@ -10,7 +10,6 @@ export class Bus {
     readonly game = new Game
 
     loot: Loot | null = null
-    set: ItemSet | null = null
 
     constructor() {
         this.load()
@@ -38,10 +37,6 @@ export class Bus {
         this.tab.show('Loot')
     }
 
-    editSet(set: ItemSet) {
-        this.set = set
-        this.tab.show('ItemSet')
-    }
 }
 
 export default new Bus
