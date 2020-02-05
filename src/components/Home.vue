@@ -8,6 +8,7 @@
                 <b-button @click="deploy" variant="outline-success"> Deploy </b-button>
             </b-button-group>
             <b-form-file @change="load($event)" accept=".json"></b-form-file>
+            <b-form-file @change="update($event)" accept=".json"></b-form-file>
         </div>
         <b-modal id="deploy-modal" hide-footer size="xl" title="Paste the text to Game.ini">
             <textarea v-model="text" class="form-control" rows="16"></textarea>
@@ -40,6 +41,16 @@ export default Vue.extend({
                 try {
                     bus.game.clear()
                     bus.game.load(json)
+                } catch (error) {
+                    this.$bvToast.toast(error)
+                }
+            })
+        },
+        update(event) {
+            const file = event.target.files[0]
+            this.read(file, json => {
+                try {
+                    bus.update(json)
                 } catch (error) {
                     this.$bvToast.toast(error)
                 }

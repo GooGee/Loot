@@ -2,6 +2,8 @@ import Tab from './Tab'
 import Game from './Ark/Game'
 import Loot from './Ark/Loot'
 import ItemSet from './Ark/ItemSet'
+import Adaptor from './Adaptor/Adaptor'
+import IData from './Adaptor/IData'
 
 export class Bus {
     readonly tab = new Tab
@@ -21,6 +23,10 @@ export class Bus {
                 this.game.load(json)
             }).catch(error => console.error(error))
         }).catch(error => console.error(error))
+    }
+
+    update(data: IData) {
+        Adaptor.run(data, this.game)
     }
 
     editLoot(loot: Loot) {

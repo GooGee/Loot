@@ -4,6 +4,16 @@ import ArkItemManager from '../Ark/ArkItemManager'
 
 export default class EngramAdaptor {
     static run(data: IEngram, manager: ArkItemManager<Engram>) {
+        // remove mod
+        if (data.path.includes('/Game/Mods/')) {
+            return
+        }
+
+        if (manager.find(data.class_string)) {
+            console.log(`${data.label} already exists`)
+            return
+        }
+
         const item = manager.make(data.class_string)
         item.label = data.label
         item.path = data.path
@@ -11,15 +21,6 @@ export default class EngramAdaptor {
         item.tagxx = data.tags
         item.mapxx = data.environments
 
-        // remove mod
-        if (item.path.includes('/Game/Mods/')) {
-            return
-        }
-
-        try {
-            manager.add(item)
-        } catch (error) {
-            console.info(error)
-        }
+        manager.add(item)
     }
 }
