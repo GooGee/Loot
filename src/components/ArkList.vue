@@ -1,7 +1,15 @@
 <template>
     <b-table-simple hover caption-top>
         <caption>
-            <EngramFilter :manager="manager"></EngramFilter>
+            <EngramFilter :manager="manager">
+                <div class="col-3">
+                    <b-form-select v-model="manager">
+                        <b-form-select-option :value="bus.game.CreatureManager">Creature</b-form-select-option>
+                        <b-form-select-option :value="bus.game.EngramManager">Engram</b-form-select-option>
+                        <b-form-select-option :value="bus.game.LootManager">Loot</b-form-select-option>
+                    </b-form-select>
+                </div>
+            </EngramFilter>
         </caption>
         <b-thead>
             <b-tr>
