@@ -3,9 +3,12 @@ import Creature from '../Ark/Creature'
 import ArkItemManager from '../Ark/ArkItemManager'
 
 export default class CreatureAdaptor {
+    static count: number = 0
+
     static run(data: ICreature, manager: ArkItemManager<Creature>) {
         if (manager.find(data.class_string)) {
-            console.log(`${data.label} already exists`)
+            // console.log(`${data.label} already exists`)
+            this.count += 1
             return
         }
 

@@ -1,4 +1,5 @@
 export default interface IData {
+    min_version: number
     loot_sources: Array<ILoot>
     engrams: Array<IEngram>
     creatures: Array<ICreature>

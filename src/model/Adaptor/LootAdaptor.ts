@@ -3,9 +3,12 @@ import Loot from '../Ark/Loot'
 import ArkItemManager from '../Ark/ArkItemManager'
 
 export default class LootAdaptor {
+    static count: number = 0
+
     static run(data: ILoot, manager: ArkItemManager<Loot>) {
         if (manager.find(data.class_string)) {
-            console.log(`${data.label} already exists`)
+            // console.log(`${data.label} already exists`)
+            this.count += 1
             return
         }
 

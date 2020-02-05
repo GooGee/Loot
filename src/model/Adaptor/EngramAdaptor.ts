@@ -3,6 +3,8 @@ import Engram from '../Ark/Engram'
 import ArkItemManager from '../Ark/ArkItemManager'
 
 export default class EngramAdaptor {
+    static count: number = 0
+
     static run(data: IEngram, manager: ArkItemManager<Engram>) {
         // remove mod
         if (data.path.includes('/Game/Mods/')) {
@@ -10,7 +12,8 @@ export default class EngramAdaptor {
         }
 
         if (manager.find(data.class_string)) {
-            console.log(`${data.label} already exists`)
+            // console.log(`${data.label} already exists`)
+            this.count += 1
             return
         }
 

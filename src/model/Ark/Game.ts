@@ -7,6 +7,9 @@ import ItemSet from './ItemSet'
 import UniqueList from '../Entity/UniqueList'
 
 export default class Game extends Item {
+    version: number = 101
+    sourceVersion: number = 1
+
     readonly CreatureManager = new ArkItemManager<Creature>(Creature)
     readonly EngramManager = new ArkItemManager<Engram>(Engram)
     readonly LootManager = new ArkItemManager<Loot>(Loot)
