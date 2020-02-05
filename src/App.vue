@@ -12,6 +12,9 @@
             <LootList v-if="bus.tab.is('LootList')" />
             <ResourceList v-if="bus.tab.is('Resource')" />
         </div>
+
+        <br />
+        <br />
     </div>
 </template>
 
@@ -48,3 +51,9 @@ export default Vue.extend({
     },
 })
 </script>
+
+<style>
+.inline {
+    display: inline-block;
+}
+</style>
