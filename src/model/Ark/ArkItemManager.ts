@@ -40,31 +40,25 @@ export default class ArkItemManager<T extends ArkItem> extends UniqueList<T> {
     }
 
     get filtered() {
-        let list = this.list
-        if (this.map) {
-            list = list.filter(item => {
+        const lower = this.text.toLocaleLowerCase()
+        return this.list.filter(item => {
+            if (this.map) {
                 if (item.mapxx.indexOf(this.map) === -1) {
                     return false
                 }
-                return true
-            })
-        }
+            }
 
-        if (this.tag) {
-            list = list.filter(item => {
+            if (this.tag) {
                 if (item.tagxx.indexOf(this.tag) === -1) {
                     return false
                 }
-                return true
-            })
-        }
+            }
 
-        if (this.text) {
-            const lower = this.text.toLocaleLowerCase()
-            list = list.filter(item => {
+            if (this.text) {
                 return item.label.toLocaleLowerCase().includes(lower)
-            })
-        }
-        return list
+            }
+
+            return true
+        })
     }
 }
