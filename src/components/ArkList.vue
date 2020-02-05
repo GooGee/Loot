@@ -51,9 +51,7 @@ export default Vue.extend({
             manager: bus.game.EngramManager,
         }
     },
-    created() {
-        this.manager.tag = 'egg'
-    },
+    created() {},
     computed: {},
     methods: {
         addTag() {

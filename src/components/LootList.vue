@@ -109,11 +109,7 @@ export default Vue.extend({
             destination: null,
         }
     },
-    created() {
-        this.manager.map = 'Island'
-        this.manager.tag = ''
-        this.manager.text = ''
-    },
+    created() {},
     computed: {
         lootxx() {
             return bus.game.LootManager.list.filter(loot => loot.ItemSetManager.list.length)

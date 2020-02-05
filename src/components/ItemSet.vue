@@ -88,11 +88,7 @@ export default Vue.extend({
             manager: bus.set.EntryManager,
         }
     },
-    created() {
-        bus.game.EngramManager.map = ''
-        bus.game.EngramManager.tag = 'egg'
-        bus.game.EngramManager.text = ''
-    },
+    created() {},
     computed: {},
     methods: {
         add(item) {

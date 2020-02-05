@@ -51,11 +51,7 @@ export default Vue.extend({
             selected: null,
         }
     },
-    created() {
-        this.manager.map = 'Island'
-        this.manager.tag = ''
-        this.manager.text = ''
-    },
+    created() {},
     computed: {},
     methods: {},
 })

@@ -21,6 +21,10 @@ export class Bus {
             response.json().then(json => {
                 this.game.clear()
                 this.game.load(json)
+                this.game.CreatureManager.map = 'Island'
+                this.game.EngramManager.tag = 'egg'
+                this.game.LootManager.map = 'Island'
+                this.game.LootManager.tag = 'Beacon'
             }).catch(error => console.error(error))
         }).catch(error => console.error(error))
     }
