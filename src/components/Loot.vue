@@ -77,7 +77,7 @@ export default Vue.extend({
             }
         },
         setWeight() {
-            const value = prompt('Please input the Weight', 1)
+            const value = prompt('Please input the Weight', '1')
             if (value !== null) {
                 this.manager.list.forEach(item => {
                     item.SetWeight = parseInt(value)

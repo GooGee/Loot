@@ -118,7 +118,7 @@ export default Vue.extend({
             }
         },
         setWeight() {
-            const value = prompt('Please input the Weight', 1)
+            const value = prompt('Please input the Weight', '1')
             if (value !== null) {
                 this.manager.list.forEach(item => {
                     item.EntryWeight = parseInt(value)
@@ -126,7 +126,7 @@ export default Vue.extend({
             }
         },
         setQuantity() {
-            const value = prompt('Please input the Amount', 1)
+            const value = prompt('Please input the Amount', '1')
             if (value !== null) {
                 this.manager.list.forEach(item => {
                     item.quantity = parseInt(value)
@@ -134,7 +134,7 @@ export default Vue.extend({
             }
         },
         setChance() {
-            const value = prompt('Please input the Chance', 1)
+            const value = prompt('Please input the Chance', '1')
             if (value !== null) {
                 this.manager.list.forEach(item => {
                     if (item.canBeBluePrint) {

@@ -135,7 +135,7 @@ export default Vue.extend({
             this.destination.ItemSetManager.load(loot.ItemSetManager)
         },
         setMin() {
-            const value = prompt('Please input the Min Amount', 1)
+            const value = prompt('Please input the Min Amount', '1')
             if (value !== null) {
                 this.manager.filtered.forEach(item => {
                     item.MinItemSets = parseInt(value)
@@ -143,7 +143,7 @@ export default Vue.extend({
             }
         },
         setMax() {
-            const value = prompt('Please input the Max Amount', 1)
+            const value = prompt('Please input the Max Amount', '1')
             if (value !== null) {
                 this.manager.filtered.forEach(item => {
                     item.MaxItemSets = parseInt(value)
