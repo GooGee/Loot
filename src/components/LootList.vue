@@ -3,14 +3,7 @@
         <caption>
             <h1>Change Loot Crate</h1>
             <p>"ConfigOverrideSupplyCrateItems"</p>
-            <div>
-                <b-form-select
-                    v-model="manager.map"
-                    :options="manager.MapManager.list"
-                    value-field="name"
-                    text-field="name"
-                ></b-form-select>
-            </div>
+            <EngramFilter :manager="manager"></EngramFilter>
             <b-modal id="loot-modal" hide-footer title="Select a source Loot">
                 <b-list-group>
                     <b-list-group-item v-for="loot in lootxx" @click="select(loot)" :key="loot.name">
@@ -104,9 +97,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import bus from '../model/bus'
+import EngramFilter from './EngramFilter.vue'
 
 export default Vue.extend({
     name: 'LootList',
+    components: { EngramFilter },
     data() {
         return {
             bus,
