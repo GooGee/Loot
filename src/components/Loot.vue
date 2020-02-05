@@ -4,6 +4,19 @@
             <b-table-simple hover caption-top>
                 <caption>
                     <h1>{{ bus.loot.label }}</h1>
+
+                    <b-modal id="item-modal" hide-footer title="Item List">
+                        <ul v-if="set">
+                            <li v-for="item in set.EntryManager.list" :key="item.name">
+                                {{ item.label }}
+                            </li>
+                        </ul>
+                        <div>
+                            <b-button class="mt-3" variant="outline-danger" @click="$bvModal.hide('item-modal')">
+                                Close
+                            </b-button>
+                        </div>
+                    </b-modal>
                 </caption>
                 <b-thead>
                     <b-tr>
@@ -21,9 +34,8 @@
                             <b-form-input v-model.number="set.SetWeight" type="number" min="1" step="1"></b-form-input>
                         </b-td>
                         <b-td>
-                            <ul>
-                                <li v-for="item in set.EntryManager.list" :key="item.name">{{ item.label }}</li>
-                            </ul>
+                            <div v-if="set.EntryManager.list.length">{{ set.EntryManager.list[0].label }}</div>
+                            <b-link @click="show(set)" href="#"> ... </b-link>
                         </b-td>
                     </b-tr>
                 </b-tbody>
@@ -59,6 +71,7 @@ export default Vue.extend({
         return {
             bus,
             manager: bus.loot.ItemSetManager,
+            set: null,
         }
     },
     created() {},
@@ -83,6 +96,10 @@ export default Vue.extend({
                     item.SetWeight = parseInt(value)
                 })
             }
+        },
+        show(set) {
+            this.set = set
+            this.$bvModal.show('item-modal')
         },
     },
 })
