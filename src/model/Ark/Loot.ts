@@ -8,20 +8,9 @@ export default class Loot extends ArkItem {
     originalMinQuality: number = 1
     originalMaxQuality: number = 1
 
-    minAmountFactor: number = 8
-    maxAmountFactor: number = 4
-
     MinItemSets: number = 1
     MaxItemSets: number = 1
     readonly ItemSetManager = new UniqueList<ItemSet>(ItemSet)
-
-    get minRate() {
-        return this.minQuality / this.originalMinQuality
-    }
-
-    get maxRate() {
-        return this.maxQuality / this.originalMaxQuality
-    }
 
     update(manager: UniqueList<ItemSet>) {
         this.ItemSetManager.list.forEach(set => {
@@ -39,13 +28,15 @@ export default class Loot extends ArkItem {
     }
 
     pack() {
+        const minQuality = this.minQuality / this.originalMinQuality
+        const maxQuality = this.maxQuality / this.originalMaxQuality
         return {
             SupplyCrateClassString: this.name,
             MinItemSets: this.MinItemSets,
             MaxItemSets: this.MaxItemSets,
             NumItemSetsPower: 1.0,
             bSetsRandomWithoutReplacement: true,
-            ItemSets: this.ItemSetManager.list.map(set => set.deploy(this)),
+            ItemSets: this.ItemSetManager.list.map(set => set.deploy(minQuality, maxQuality)),
         }
     }
 

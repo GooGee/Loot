@@ -1,5 +1,4 @@
 import UniqueItem from '../Entity/UniqueItem'
-import Loot from './Loot'
 
 export default class Entry extends UniqueItem {
     label: string = ''
@@ -19,14 +18,14 @@ export default class Entry extends UniqueItem {
         this.MaxQuantity = value
     }
 
-    deploy(loot: Loot) {
+    deploy(minQuality: number, maxQuality: number) {
         return {
             ItemEntryName: this.label,
             EntryWeight: this.EntryWeight,
             MinQuantity: this.MinQuantity,
             MaxQuantity: this.MaxQuantity,
-            MinQuality: loot.minRate,
-            MaxQuality: loot.maxRate,
+            MinQuality: minQuality,
+            MaxQuality: maxQuality,
             bForceBlueprint: false,
             ChanceToBeBlueprintOverride: this.ChanceToBeBlueprintOverride,
             ItemClassStrings: [this.name],
