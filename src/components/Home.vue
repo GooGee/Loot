@@ -54,14 +54,15 @@ export default Vue.extend({
             const file = event.target.files[0]
             this.read(file, json => {
                 if (!json.version) {
-                    alert('Invalid file!')
-                    return 
+                    this.$bvToast.toast('Invalid file!', { title: 'Error', variant: 'danger', solid: true })
+                    return
                 }
+
                 try {
                     bus.game.clear()
                     bus.game.load(json)
                 } catch (error) {
-                    this.$bvToast.toast(error)
+                    this.$bvToast.toast(error.message, { title: 'Error', variant: 'danger', solid: true })
                 }
             })
         },
@@ -71,7 +72,7 @@ export default Vue.extend({
                 try {
                     bus.update(json)
                 } catch (error) {
-                    this.$bvToast.toast(error)
+                    this.$bvToast.toast(error.message, { title: 'Error', variant: 'danger', solid: true })
                 }
             })
         },

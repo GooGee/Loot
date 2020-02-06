@@ -116,7 +116,11 @@ export default Vue.extend({
             try {
                 bus.game.addEngramToSet(item, this.selected)
             } catch (error) {
-                alert(error)
+                this.$bvToast.toast(`${this.selected.label} already exists!`, {
+                    title: 'Error',
+                    variant: 'danger',
+                    solid: true,
+                })
             }
         },
         addAll() {
@@ -151,7 +155,7 @@ export default Vue.extend({
             }
         },
         setChance() {
-            const value = prompt('Please input the Chance', '1')
+            const value = prompt('Please input the Chance', '0.5')
             if (value !== null) {
                 this.manager.list.forEach(item => {
                     if (item.canBeBluePrint) {

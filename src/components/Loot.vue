@@ -8,7 +8,7 @@
                     <b-modal id="item-modal" hide-footer title="Item List">
                         <ul v-if="set">
                             <li v-for="item in set.EntryManager.list" :key="item.name">
-                                {{ item.label }}
+                                {{ item.MinQuantity }} {{ item.label }}
                             </li>
                         </ul>
                         <div>
@@ -35,7 +35,7 @@
                         </b-td>
                         <b-td>
                             <div v-if="set.EntryManager.list.length">{{ set.EntryManager.list[0].label }}</div>
-                            <b-link @click="show(set)" href="#"> ... </b-link>
+                            <b-link @click="show(set)" href="#"> Show All </b-link>
                         </b-td>
                     </b-tr>
                 </b-tbody>
@@ -81,7 +81,7 @@ export default Vue.extend({
             try {
                 this.manager.add(set)
             } catch (error) {
-                alert(error)
+                this.$bvToast.toast(`${set.label} already exists!`, { title: 'Error', variant: 'danger', solid: true })
             }
         },
         remove(set) {

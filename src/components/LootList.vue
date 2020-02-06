@@ -91,7 +91,7 @@
                     <b-button @click="setMax" variant="outline-primary"> Set </b-button>
                 </b-td>
                 <b-td>
-                    <b-button @click="bus.game.updateLoot()" variant="outline-primary"> Update </b-button>
+                    <b-button @click="update" variant="outline-primary"> Update </b-button>
                 </b-td>
             </b-tr>
         </b-tfoot>
@@ -149,6 +149,10 @@ export default Vue.extend({
                     item.MaxItemSets = parseInt(value)
                 })
             }
+        },
+        update() {
+            bus.game.updateLoot()
+            this.$bvToast.toast('Loot updated!', { title: 'Info', solid: true })
         },
     },
 })
