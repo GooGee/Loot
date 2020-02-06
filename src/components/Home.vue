@@ -1,17 +1,32 @@
 <template>
     <div>
-        <h1>Ark Loot</h1>
         <div>
+            <h1 class="inline">Ark Loot</h1>
+            <span style="margin: 11px;">{{ bus.game.sourceVersion }}</span>
             <b-button-group>
-                <b-button variant="outline-primary"> Load </b-button>
                 <b-button @click="save" variant="outline-success"> Download </b-button>
                 <b-button @click="deploy" variant="outline-success"> Deploy </b-button>
             </b-button-group>
+            <br />
+            <br />
             <b-form-file @change="load($event)" accept=".json"></b-form-file>
-            <b-form-file @change="update($event)" accept=".json"></b-form-file>
+            <b-form-file @change="update($event)" accept=".json" style="display: none;"></b-form-file>
         </div>
+        <br />
+        <b-card-group deck>
+            <b-card title="Creature">
+                <b-card-text>{{ bus.game.CreatureManager.list.length }}</b-card-text>
+            </b-card>
+            <b-card title="Engram">
+                <b-card-text>{{ bus.game.EngramManager.list.length }}</b-card-text>
+            </b-card>
+            <b-card title="Loot">
+                <b-card-text>{{ bus.game.LootManager.list.length }}</b-card-text>
+            </b-card>
+        </b-card-group>
+
         <b-modal id="deploy-modal" hide-footer size="xl" title="Paste the text to Game.ini">
-            <textarea v-model="text" class="form-control" rows="16"></textarea>
+            <textarea v-model="text" class="form-control" rows="16" spellcheck="false"></textarea>
             <div>
                 <b-button class="mt-3" variant="outline-danger" @click="$bvModal.hide('deploy-modal')">
                     Close
@@ -38,6 +53,10 @@ export default Vue.extend({
         load(event) {
             const file = event.target.files[0]
             this.read(file, json => {
+                if (!json.version) {
+                    alert('Invalid file!')
+                    return 
+                }
                 try {
                     bus.game.clear()
                     bus.game.load(json)

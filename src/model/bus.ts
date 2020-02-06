@@ -24,9 +24,6 @@ export class Bus {
                 this.game.EngramManager.tag = 'egg'
                 this.game.LootManager.map = 'Island'
                 this.game.LootManager.tag = 'Beacon'
-                console.log(`Creature: ${this.game.CreatureManager.list.length}`)
-                console.log(`Engram: ${this.game.EngramManager.list.length}`)
-                console.log(`Loot: ${this.game.LootManager.list.length}`)
             }).catch(error => console.error(error))
         }).catch(error => console.error(error))
     }
