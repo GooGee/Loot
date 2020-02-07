@@ -24,7 +24,7 @@
             <b-table-simple hover caption-top>
                 <b-thead>
                     <b-tr>
-                        <b-th width="40%">Name</b-th>
+                        <b-th width="40%">{{ manager.list.length }}</b-th>
                         <b-th>Weight</b-th>
                         <b-th>Amount</b-th>
                         <b-th>Blueprint Chance</b-th>
@@ -77,8 +77,9 @@
             </b-table-simple>
         </div>
         <div v-if="selected" class="col-4">
-            <h4>Item</h4>
+            <h4>Item List</h4>
             <EngramFilter :manager="bus.game.EngramManager" :inline="false"></EngramFilter>
+            <br />
             <ul>
                 <li>
                     <b-button @click="addAll" variant="outline-success"> + All </b-button>

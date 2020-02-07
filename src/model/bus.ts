@@ -1,7 +1,6 @@
 import Tab from './Tab'
 import Game from './Ark/Game'
 import Loot from './Ark/Loot'
-import ItemSet from './Ark/ItemSet'
 import Adaptor from './Adaptor/Adaptor'
 import IData from './Adaptor/IData'
 
