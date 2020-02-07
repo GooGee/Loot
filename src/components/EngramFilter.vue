@@ -8,17 +8,16 @@
                 value-field="name"
                 text-field="name"
             >
-                <b-form-select-option value="">All Map</b-form-select-option>
+                <template v-slot:first>
+                    <b-form-select-option value="">-- Any Map --</b-form-select-option>
+                </template>
             </b-form-select>
         </div>
         <div :class="css">
-            <b-form-select
-                v-model="manager.tag"
-                :options="manager.TagManager.list"
-                value-field="name"
-                text-field="name"
-            >
-                <b-form-select-option value="">Any Tag</b-form-select-option>
+            <b-form-select v-model="manager.tag" :options="tagxx" value-field="name" text-field="name">
+                <template v-slot:first>
+                    <b-form-select-option value="">-- Any Tag --</b-form-select-option>
+                </template>
             </b-form-select>
         </div>
         <div :class="css">
@@ -46,12 +45,30 @@ export default Vue.extend({
             default: true,
         },
     },
+    data() {
+        return {
+            tagxx: [],
+        }
+    },
+    created() {
+        this.sort()
+    },
+    watch: {
+        manager() {
+            this.sort()
+        },
+    },
     computed: {
         css() {
             if (this.inline) {
                 return 'col-3'
             }
             return 'col-12'
+        },
+    },
+    methods: {
+        sort() {
+            this.tagxx = this.manager.TagManager.list.sort((aaa, bbb) => aaa.name.localeCompare(bbb.name))
         },
     },
 })
