@@ -39,6 +39,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import bus from '../model/bus'
+import { read, download } from '../helper'
 import Game from '../model/Ark/Game'
 
 export default Vue.extend({
@@ -52,7 +53,7 @@ export default Vue.extend({
     methods: {
         load(event) {
             const file = event.target.files[0]
-            this.read(file, json => {
+            read(file, json => {
                 if (!json.version) {
                     this.$bvToast.toast('Invalid file!', { title: 'Error', variant: 'danger', solid: true })
                     return
@@ -61,6 +62,7 @@ export default Vue.extend({
                 try {
                     bus.game.clear()
                     bus.game.load(json)
+                    this.$bvToast.toast('Success!', { title: 'Info', variant: 'success', solid: true })
                 } catch (error) {
                     this.$bvToast.toast(error.message, { title: 'Error', variant: 'danger', solid: true })
                 }
@@ -68,9 +70,10 @@ export default Vue.extend({
         },
         update(event) {
             const file = event.target.files[0]
-            this.read(file, json => {
+            read(file, json => {
                 try {
                     bus.update(json)
+                    this.$bvToast.toast('Success!', { title: 'Info', variant: 'success', solid: true })
                 } catch (error) {
                     this.$bvToast.toast(error.message, { title: 'Error', variant: 'danger', solid: true })
                 }
@@ -78,25 +81,7 @@ export default Vue.extend({
         },
         save() {
             const json = JSON.stringify(bus.game)
-            this.download('loot.json', json)
-        },
-        read(file, callback) {
-            const reader = new FileReader()
-            reader.onload = event => {
-                const json = JSON.parse(event.target.result)
-                callback(json)
-            }
-            reader.readAsText(file)
-        },
-        download(name, json) {
-            const blob = new Blob([json], { type: 'application/json' })
-            const link = document.createElement('a')
-            link.download = name
-            link.href = URL.createObjectURL(blob)
-            link.style = 'display: none'
-            document.body.appendChild(link)
-            link.click()
-            URL.revokeObjectURL(link.href)
+            download('loot.json', json)
         },
         deploy() {
             this.text = bus.game.deploy()
