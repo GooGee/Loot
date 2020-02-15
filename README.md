@@ -4,27 +4,31 @@ Ark Survival Evolved Loot Crate Editor [Online](https://googee.github.io/Loot/di
 
 ## Feature
 
-- Custom Beacon
-- Custom Creature's Loot
+- Customize Beacon
+- Customize Creature's Loot
 - Disable Loot Crates
 - Replace Creature
 - Change Harvest Rate
-- Save and Load data
+- Save and Load
 
 ## Guide
 
 - Only include Loot Crates you want to change.
 - To disable a Loot Crate, include it and leave its ItemSet list empty.
-- Disable a creature's crate, then killing that creature won't give you crap any more.
-- If you want to change a creature's crate, make sure it has at least 2 ItemSet, otherwise, it won't work.
-- To copy the content of other Loot Crate, just click the "From" button and select it.
-- After changing the ItemSet, click the "Update" button, it will automatically update the Loot Crates.
+- Disable a creature's loot, then killing that creature won't give you crap any more.
+- To change a creature's loot, make sure it has at least 2 ItemSet.
+- After changing the ItemSet, click the "Update" button to update the Loot Crates.
+- To copy the content of other Loot Crate, just click the "Load" button and select it.
 
 ## Game.ini location
 
-For single player maps go to: "Steam\SteamApps\common\ARK\ShooterGame\Saved\Config\WindowsNoEditor\Game.ini"
+For single player go to:
 
-For servers go to: "Steam\SteamApps\common\ARK\ShooterGame\Saved\Config\WindowsServer\Game.ini"
+"Steam\SteamApps\common\ARK\ShooterGame\Saved\Config\WindowsNoEditor\Game.ini"
+
+For servers go to:
+
+"Steam\SteamApps\common\ARK\ShooterGame\Saved\Config\WindowsServer\Game.ini"
 
 [More Configuration](https://ark.gamepedia.com/Server_Configuration)
 
