@@ -9,7 +9,8 @@
             <ItemSet v-if="bus.tab.is('ItemSet')" />
             <Loot v-if="bus.tab.is('Loot')" />
             <LootList v-if="bus.tab.is('LootList')" />
-            <ResourceList v-if="bus.tab.is('Resource')" />
+            <HarvestList v-if="bus.tab.is('Harvest')" />
+            <StackList v-if="bus.tab.is('Stack')" />
         </div>
 
         <br />
@@ -27,7 +28,8 @@ import CreatureList from './components/CreatureList.vue'
 import ItemSet from './components/ItemSet.vue'
 import Loot from './components/Loot.vue'
 import LootList from './components/LootList.vue'
-import ResourceList from './components/ResourceList.vue'
+import HarvestList from './components/HarvestList.vue'
+import StackList from './components/StackList.vue'
 
 export default Vue.extend({
     name: 'app',
@@ -39,7 +41,8 @@ export default Vue.extend({
         ItemSet,
         Loot,
         LootList,
-        ResourceList,
+        HarvestList,
+        StackList,
     },
     data() {
         return {
