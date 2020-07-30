@@ -1,8 +1,9 @@
 import ArkItem from './ArkItem'
 import ItemSet from './ItemSet'
 import UniqueList from '../Entity/UniqueList'
+import IConfig from './IConfig'
 
-export default class Loot extends ArkItem {
+export default class Loot extends ArkItem implements IConfig {
     minQuality: number = 1
     maxQuality: number = 1
     originalMinQuality: number = 1
