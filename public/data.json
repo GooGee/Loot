@@ -45115,48 +45115,6 @@
                 }
             },
             {
-                "name": "DinoDropInventoryComponent_Carnivore_Huge_C",
-                "included": false,
-                "label": "Carnivore_Huge",
-                "path": "",
-                "mapxx": [
-                    "Island"
-                ],
-                "tagxx": [
-                    "Creature"
-                ],
-                "minQuality": 1,
-                "maxQuality": 1,
-                "originalMinQuality": 1,
-                "originalMaxQuality": 1,
-                "MinItemSets": 1,
-                "MaxItemSets": 1,
-                "ItemSetManager": {
-                    "list": []
-                }
-            },
-            {
-                "name": "DinoDropInventoryComponent_Carnivore_Huge_Sauro_C",
-                "included": false,
-                "label": "Carnivore_Huge_Sauro",
-                "path": "",
-                "mapxx": [
-                    "Island"
-                ],
-                "tagxx": [
-                    "Creature"
-                ],
-                "minQuality": 1,
-                "maxQuality": 1,
-                "originalMinQuality": 1,
-                "originalMaxQuality": 1,
-                "MinItemSets": 1,
-                "MaxItemSets": 1,
-                "ItemSetManager": {
-                    "list": []
-                }
-            },
-            {
                 "name": "DinoDropInventoryComponent_Carnivore_Large_Basilisk_C",
                 "included": false,
                 "label": "Carnivore_Large_Basilisk",
@@ -45346,27 +45304,6 @@
                 }
             },
             {
-                "name": "DinoDropInventoryComponent_Carnivore_Tusoteuthis_C",
-                "included": false,
-                "label": "Carnivore_Tusoteuthis",
-                "path": "",
-                "mapxx": [
-                    "Island"
-                ],
-                "tagxx": [
-                    "Creature"
-                ],
-                "minQuality": 1,
-                "maxQuality": 1,
-                "originalMinQuality": 1,
-                "originalMaxQuality": 1,
-                "MinItemSets": 1,
-                "MaxItemSets": 1,
-                "ItemSetManager": {
-                    "list": []
-                }
-            },
-            {
                 "name": "DinoDropInventoryComponent_EndBossMinion_C",
                 "included": false,
                 "label": "EndBossMinion",
@@ -45388,51 +45325,9 @@
                 }
             },
             {
-                "name": "DinoDropInventoryComponent_Fireworks_C",
-                "included": false,
-                "label": "Fireworks",
-                "path": "",
-                "mapxx": [
-                    "Island"
-                ],
-                "tagxx": [
-                    "Other"
-                ],
-                "minQuality": 1,
-                "maxQuality": 1,
-                "originalMinQuality": 1,
-                "originalMaxQuality": 1,
-                "MinItemSets": 1,
-                "MaxItemSets": 1,
-                "ItemSetManager": {
-                    "list": []
-                }
-            },
-            {
                 "name": "DinoDropInventoryComponent_LavaGolem_jackson_C",
                 "included": false,
                 "label": "LavaGolem_jackson",
-                "path": "",
-                "mapxx": [
-                    "Island"
-                ],
-                "tagxx": [
-                    "Creature"
-                ],
-                "minQuality": 1,
-                "maxQuality": 1,
-                "originalMinQuality": 1,
-                "originalMaxQuality": 1,
-                "MinItemSets": 1,
-                "MaxItemSets": 1,
-                "ItemSetManager": {
-                    "list": []
-                }
-            },
-            {
-                "name": "DinoDropInventoryComponent_Mantis_C",
-                "included": false,
-                "label": "Mantis",
                 "path": "",
                 "mapxx": [
                     "Island"
