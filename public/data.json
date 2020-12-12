@@ -45577,6 +45577,48 @@
                 }
             },
             {
+                "name": "PrimalInventoryBP_BaseMeatFishing_C",
+                "included": false,
+                "label": "BaseMeatFishing",
+                "path": "",
+                "mapxx": [
+                    "Island"
+                ],
+                "tagxx": [
+                    "Other"
+                ],
+                "minQuality": 1,
+                "maxQuality": 1,
+                "originalMinQuality": 1,
+                "originalMaxQuality": 1,
+                "MinItemSets": 1,
+                "MaxItemSets": 1,
+                "ItemSetManager": {
+                    "list": []
+                }
+            },
+            {
+                "name": "PrimalInventoryBP_GenericFishing_C",
+                "included": false,
+                "label": "GenericFishing",
+                "path": "",
+                "mapxx": [
+                    "Island"
+                ],
+                "tagxx": [
+                    "Other"
+                ],
+                "minQuality": 1,
+                "maxQuality": 1,
+                "originalMinQuality": 1,
+                "originalMaxQuality": 1,
+                "MinItemSets": 1,
+                "MaxItemSets": 1,
+                "ItemSetManager": {
+                    "list": []
+                }
+            },
+            {
                 "name": "Val_SupplyCrate_Level35_C",
                 "included": false,
                 "label": "Valguero Purple",
