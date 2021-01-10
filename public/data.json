@@ -14233,7 +14233,8 @@
                     "Valguero"
                 ],
                 "tagxx": [
-                    "blueprintable"
+                    "blueprintable",
+                    "Saddle"
                 ],
                 "canBeBluePrint": true,
                 "Multiplier": 1
@@ -25227,7 +25228,7 @@
             {
                 "name": "PrimalItemArmor_MegalodonSaddle_Tek_C",
                 "included": false,
-                "label": "Tek Megalodon Saddle",
+                "label": "Megalodon Tek Saddle",
                 "path": "/Game/PrimalEarth/CoreBlueprints/Items/Armor/Saddles/PrimalItemArmor_MegalodonSaddle_Tek.PrimalItemArmor_MegalodonSaddle_Tek",
                 "mapxx": [
                     "Island",
@@ -25417,7 +25418,7 @@
             {
                 "name": "PrimalItemArmor_RexSaddle_Tek_C",
                 "included": false,
-                "label": "Tek Rex Saddle",
+                "label": "Rex Tek Saddle",
                 "path": "/Game/PrimalEarth/CoreBlueprints/Items/Armor/Saddles/PrimalItemArmor_RexSaddle_Tek.PrimalItemArmor_RexSaddle_Tek",
                 "mapxx": [
                     "Island",
@@ -25559,7 +25560,7 @@
             {
                 "name": "PrimalItemArmor_Tapejara_Tek_C",
                 "included": false,
-                "label": "Tek Tapejara Saddle",
+                "label": "Tapejara Tek Saddle",
                 "path": "/Game/PrimalEarth/CoreBlueprints/Items/Armor/Saddles/PrimalItemArmor_Tapejara_Tek.PrimalItemArmor_Tapejara_Tek",
                 "mapxx": [
                     "Island",
