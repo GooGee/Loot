@@ -117,7 +117,7 @@ export default Vue.extend({
             try {
                 bus.game.addEngramToSet(item, this.selected)
             } catch (error) {
-                this.$bvToast.toast(`${this.selected.label} already exists!`, {
+                this.$bvToast.toast(`${item.label} already exists!`, {
                     title: 'Error',
                     variant: 'danger',
                     solid: true,
