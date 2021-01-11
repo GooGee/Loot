@@ -44434,7 +44434,7 @@
                             "EntryWeight": 1,
                             "MinQuantity": 1,
                             "MaxQuantity": 1,
-                            "ChanceToBeBlueprintOverride": 0
+                            "ChanceToBeBlueprintOverride": 0.8
                         },
                         {
                             "name": "PrimalItem_WeaponCompoundBow_C",
@@ -44443,7 +44443,7 @@
                             "EntryWeight": 1,
                             "MinQuantity": 1,
                             "MaxQuantity": 1,
-                            "ChanceToBeBlueprintOverride": 0
+                            "ChanceToBeBlueprintOverride": 0.8
                         },
                         {
                             "name": "PrimalItem_WeaponProd_C",
@@ -44452,7 +44452,7 @@
                             "EntryWeight": 1,
                             "MinQuantity": 1,
                             "MaxQuantity": 1,
-                            "ChanceToBeBlueprintOverride": 0
+                            "ChanceToBeBlueprintOverride": 0.8
                         },
                         {
                             "name": "PrimalItem_WeaponMachinedPistol_C",
@@ -44461,7 +44461,7 @@
                             "EntryWeight": 1,
                             "MinQuantity": 1,
                             "MaxQuantity": 1,
-                            "ChanceToBeBlueprintOverride": 0
+                            "ChanceToBeBlueprintOverride": 0.8
                         },
                         {
                             "name": "PrimalItem_WeaponMachinedSniper_C",
@@ -44470,7 +44470,7 @@
                             "EntryWeight": 1,
                             "MinQuantity": 1,
                             "MaxQuantity": 1,
-                            "ChanceToBeBlueprintOverride": 0
+                            "ChanceToBeBlueprintOverride": 0.8
                         },
                         {
                             "name": "PrimalItem_WeaponHarpoon_C",
@@ -44479,7 +44479,7 @@
                             "EntryWeight": 1,
                             "MinQuantity": 1,
                             "MaxQuantity": 1,
-                            "ChanceToBeBlueprintOverride": 0
+                            "ChanceToBeBlueprintOverride": 0.8
                         },
                         {
                             "name": "PrimalItem_WeaponMachinedShotgun_C",
@@ -44488,7 +44488,7 @@
                             "EntryWeight": 1,
                             "MinQuantity": 1,
                             "MaxQuantity": 1,
-                            "ChanceToBeBlueprintOverride": 0
+                            "ChanceToBeBlueprintOverride": 0.8
                         },
                         {
                             "name": "PrimalItem_WeaponRocketLauncher_C",
@@ -44497,7 +44497,7 @@
                             "EntryWeight": 1,
                             "MinQuantity": 1,
                             "MaxQuantity": 1,
-                            "ChanceToBeBlueprintOverride": 0
+                            "ChanceToBeBlueprintOverride": 0.8
                         }
                     ]
                 },
