@@ -16,8 +16,11 @@
                     <b-nav-item :class="{ active: bus.tab.is('Creature') }" @click="bus.tab.show('Creature')" href="#">
                         Creature
                     </b-nav-item>
-                    <b-nav-item :class="{ active: bus.tab.is('Resource') }" @click="bus.tab.show('Resource')" href="#">
-                        Resource
+                    <b-nav-item :class="{ active: bus.tab.is('Harvest') }" @click="bus.tab.show('Harvest')" href="#">
+                        Harvest
+                    </b-nav-item>
+                    <b-nav-item :class="{ active: bus.tab.is('Stack') }" @click="bus.tab.show('Stack')" href="#">
+                        Stack
                     </b-nav-item>
                     <b-nav-item :class="{ active: bus.tab.is('LootList') }" @click="bus.tab.show('LootList')" href="#">
                         Loot
