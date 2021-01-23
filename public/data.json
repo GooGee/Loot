@@ -1,5 +1,5 @@
 {
-    "version": 101,
+    "version": 102,
     "sourceVersion": 10300302,
     "CreatureManager": {
         "list": [
@@ -7329,7 +7329,8 @@
                     "Valguero"
                 ],
                 "tagxx": [
-                    "blueprintable"
+                    "blueprintable",
+                    "Weapon"
                 ],
                 "canBeBluePrint": true,
                 "Multiplier": 1
@@ -12061,7 +12062,8 @@
                     "Valguero"
                 ],
                 "tagxx": [
-                    "blueprintable"
+                    "blueprintable",
+                    "Weapon"
                 ],
                 "canBeBluePrint": true,
                 "Multiplier": 1
@@ -27473,7 +27475,8 @@
                     "Valguero"
                 ],
                 "tagxx": [
-                    "blueprintable"
+                    "blueprintable",
+                    "Weapon"
                 ],
                 "canBeBluePrint": true,
                 "Multiplier": 1
