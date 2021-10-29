@@ -20,6 +20,24 @@
             </div>
             <br />
         </div>
+        <div v-if="selected" class="col-12">
+            <b-table-simple hover caption-top>
+                <b-tbody>
+                    <b-tr>
+                        <b-td>min item</b-td>
+                        <b-td>
+                            <b-form-input v-model.number="selected.minAmount" type="number" min="1" step="1"></b-form-input>
+                        </b-td>
+                    </b-tr>
+                    <b-tr>
+                        <b-td>max item</b-td>
+                        <b-td>
+                            <b-form-input v-model.number="selected.maxAmount" type="number" min="1" step="1"></b-form-input>
+                        </b-td>
+                    </b-tr>
+                </b-tbody>
+            </b-table-simple>
+        </div>
         <div v-if="selected" class="col-8">
             <b-table-simple hover caption-top>
                 <b-thead>
