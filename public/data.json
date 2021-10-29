@@ -28833,8 +28833,8 @@
                         {
                             "name": "2021-01-10T03:45:19.531Z",
                             "label": "Equipment 1",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -29008,8 +29008,8 @@
                         {
                             "name": "2020-02-06T02:06:44.236Z",
                             "label": "Resource",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -29271,8 +29271,8 @@
                         {
                             "name": "2021-01-10T03:45:19.531Z",
                             "label": "Equipment 1",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -29516,8 +29516,8 @@
                         {
                             "name": "2020-02-06T02:00:59.916Z",
                             "label": "Saddle 1",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -29718,8 +29718,8 @@
                         {
                             "name": "2021-01-10T04:49:32.020Z",
                             "label": "Ammunition",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -30044,8 +30044,8 @@
                         {
                             "name": "2020-02-06T02:00:59.916Z",
                             "label": "Saddle 1",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -30316,8 +30316,8 @@
                         {
                             "name": "2021-01-09T06:33:33.153Z",
                             "label": "Equipment 2",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -30563,8 +30563,8 @@
                         {
                             "name": "2020-02-06T07:16:55.424Z",
                             "label": "Food 1",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -30874,8 +30874,8 @@
                         {
                             "name": "2021-01-09T06:33:33.153Z",
                             "label": "Equipment 2",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -31212,8 +31212,8 @@
                         {
                             "name": "2020-02-04T02:09:55.686Z",
                             "label": "Saddle 2",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -31414,8 +31414,8 @@
                         {
                             "name": "2020-02-06T03:38:12.250Z",
                             "label": "Food 2",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -31743,8 +31743,8 @@
                         {
                             "name": "2020-02-04T02:09:55.686Z",
                             "label": "Saddle 2",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -32036,8 +32036,8 @@
                         {
                             "name": "2021-01-09T06:33:01.058Z",
                             "label": "Equipment 3",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -32383,8 +32383,8 @@
                         {
                             "name": "2021-01-09T06:33:01.058Z",
                             "label": "Equipment 3",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -32730,8 +32730,8 @@
                         {
                             "name": "2020-02-04T02:09:51.645Z",
                             "label": "Saddle 3",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -33032,8 +33032,8 @@
                         {
                             "name": "2020-02-04T02:09:51.645Z",
                             "label": "Saddle 3",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -33333,8 +33333,8 @@
                         {
                             "name": "2020-02-06T02:00:59.916Z",
                             "label": "Saddle 1",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -33535,8 +33535,8 @@
                         {
                             "name": "2021-01-10T03:45:19.531Z",
                             "label": "Equipment 1",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -33735,8 +33735,8 @@
                         {
                             "name": "2020-02-06T02:00:59.916Z",
                             "label": "Saddle 1",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -33937,8 +33937,8 @@
                         {
                             "name": "2021-01-10T03:45:19.531Z",
                             "label": "Equipment 1",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -34137,8 +34137,8 @@
                         {
                             "name": "2020-02-06T02:00:59.916Z",
                             "label": "Saddle 1",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -34339,8 +34339,8 @@
                         {
                             "name": "2021-01-10T03:45:19.531Z",
                             "label": "Equipment 1",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -34538,8 +34538,8 @@
                         {
                             "name": "2020-02-06T02:00:59.916Z",
                             "label": "Saddle 1",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -34740,8 +34740,8 @@
                         {
                             "name": "2021-01-10T03:45:19.531Z",
                             "label": "Equipment 1",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -34939,8 +34939,8 @@
                         {
                             "name": "2020-02-06T02:00:59.916Z",
                             "label": "Saddle 1",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -35141,8 +35141,8 @@
                         {
                             "name": "2021-01-10T03:45:19.531Z",
                             "label": "Equipment 1",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -35426,8 +35426,8 @@
                         {
                             "name": "2020-02-04T02:09:55.686Z",
                             "label": "Saddle 2",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -35628,8 +35628,8 @@
                         {
                             "name": "2021-01-09T06:33:33.153Z",
                             "label": "Equipment 2",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -35900,8 +35900,8 @@
                         {
                             "name": "2020-02-04T02:09:55.686Z",
                             "label": "Saddle 2",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -36102,8 +36102,8 @@
                         {
                             "name": "2021-01-09T06:33:33.153Z",
                             "label": "Equipment 2",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -36373,8 +36373,8 @@
                         {
                             "name": "2020-02-04T02:09:55.686Z",
                             "label": "Saddle 2",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -36575,8 +36575,8 @@
                         {
                             "name": "2021-01-09T06:33:33.153Z",
                             "label": "Equipment 2",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -36846,8 +36846,8 @@
                         {
                             "name": "2020-02-04T02:09:55.686Z",
                             "label": "Saddle 2",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -37048,8 +37048,8 @@
                         {
                             "name": "2021-01-09T06:33:33.153Z",
                             "label": "Equipment 2",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -37384,8 +37384,8 @@
                         {
                             "name": "2020-02-04T02:09:51.645Z",
                             "label": "Saddle 3",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -37595,8 +37595,8 @@
                         {
                             "name": "2021-01-09T06:33:01.058Z",
                             "label": "Equipment 3",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -37876,8 +37876,8 @@
                         {
                             "name": "2020-02-04T02:09:51.645Z",
                             "label": "Saddle 3",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -38087,8 +38087,8 @@
                         {
                             "name": "2021-01-09T06:33:01.058Z",
                             "label": "Equipment 3",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -38367,8 +38367,8 @@
                         {
                             "name": "2020-02-04T02:09:51.645Z",
                             "label": "Saddle 3",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -38578,8 +38578,8 @@
                         {
                             "name": "2021-01-09T06:33:01.058Z",
                             "label": "Equipment 3",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -38858,8 +38858,8 @@
                         {
                             "name": "2020-02-04T02:09:51.645Z",
                             "label": "Saddle 3",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -39069,8 +39069,8 @@
                         {
                             "name": "2021-01-09T06:33:01.058Z",
                             "label": "Equipment 3",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -39414,8 +39414,8 @@
                         {
                             "name": "2020-02-04T02:09:51.645Z",
                             "label": "Saddle 3",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -39625,8 +39625,8 @@
                         {
                             "name": "2020-02-04T02:09:55.686Z",
                             "label": "Saddle 2",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -39827,8 +39827,8 @@
                         {
                             "name": "2021-01-09T06:33:01.058Z",
                             "label": "Equipment 3",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -40083,8 +40083,8 @@
                         {
                             "name": "2021-01-09T06:33:33.153Z",
                             "label": "Equipment 2",
-                            "minAmountFactor": 8,
-                            "maxAmountFactor": 4,
+                            "minAmount": 1,
+                            "maxAmount": 1,
                             "EntryManager": {
                                 "list": [
                                     {
@@ -42989,8 +42989,8 @@
             {
                 "name": "2020-02-04T02:09:51.645Z",
                 "label": "Saddle 3",
-                "minAmountFactor": 8,
-                "maxAmountFactor": 4,
+                "minAmount": 1,
+                "maxAmount": 1,
                 "EntryManager": {
                     "list": [
                         {
@@ -43200,8 +43200,8 @@
             {
                 "name": "2020-02-04T02:09:55.686Z",
                 "label": "Saddle 2",
-                "minAmountFactor": 8,
-                "maxAmountFactor": 4,
+                "minAmount": 1,
+                "maxAmount": 1,
                 "EntryManager": {
                     "list": [
                         {
@@ -43402,8 +43402,8 @@
             {
                 "name": "2020-02-06T02:00:59.916Z",
                 "label": "Saddle 1",
-                "minAmountFactor": 8,
-                "maxAmountFactor": 4,
+                "minAmount": 1,
+                "maxAmount": 1,
                 "EntryManager": {
                     "list": [
                         {
@@ -43604,8 +43604,8 @@
             {
                 "name": "2020-02-06T02:06:44.236Z",
                 "label": "Resource",
-                "minAmountFactor": 8,
-                "maxAmountFactor": 4,
+                "minAmount": 1,
+                "maxAmount": 1,
                 "EntryManager": {
                     "list": [
                         {
@@ -43797,8 +43797,8 @@
             {
                 "name": "2020-02-06T03:38:12.250Z",
                 "label": "Food 2",
-                "minAmountFactor": 8,
-                "maxAmountFactor": 4,
+                "minAmount": 1,
+                "maxAmount": 1,
                 "EntryManager": {
                     "list": [
                         {
@@ -44035,8 +44035,8 @@
             {
                 "name": "2020-02-06T07:16:55.424Z",
                 "label": "Food 1",
-                "minAmountFactor": 8,
-                "maxAmountFactor": 4,
+                "minAmount": 1,
+                "maxAmount": 1,
                 "EntryManager": {
                     "list": [
                         {
@@ -44255,8 +44255,8 @@
             {
                 "name": "2021-01-09T06:33:01.058Z",
                 "label": "Equipment 3",
-                "minAmountFactor": 8,
-                "maxAmountFactor": 4,
+                "minAmount": 1,
+                "maxAmount": 1,
                 "EntryManager": {
                     "list": [
                         {
@@ -44511,8 +44511,8 @@
             {
                 "name": "2021-01-09T06:33:33.153Z",
                 "label": "Equipment 2",
-                "minAmountFactor": 8,
-                "maxAmountFactor": 4,
+                "minAmount": 1,
+                "maxAmount": 1,
                 "EntryManager": {
                     "list": [
                         {
@@ -44758,8 +44758,8 @@
             {
                 "name": "2021-01-10T03:45:19.531Z",
                 "label": "Equipment 1",
-                "minAmountFactor": 8,
-                "maxAmountFactor": 4,
+                "minAmount": 1,
+                "maxAmount": 1,
                 "EntryManager": {
                     "list": [
                         {
@@ -44933,8 +44933,8 @@
             {
                 "name": "2021-01-10T04:49:32.020Z",
                 "label": "Ammunition",
-                "minAmountFactor": 8,
-                "maxAmountFactor": 4,
+                "minAmount": 1,
+                "maxAmount": 1,
                 "EntryManager": {
                     "list": [
                         {
