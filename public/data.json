@@ -29768,15 +29768,6 @@
                                         "ChanceToBeBlueprintOverride": 0
                                     },
                                     {
-                                        "name": "PrimalItemAmmo_Boulder_C",
-                                        "label": "Boulder",
-                                        "canBeBluePrint": false,
-                                        "EntryWeight": 1,
-                                        "MinQuantity": 1,
-                                        "MaxQuantity": 1,
-                                        "ChanceToBeBlueprintOverride": 0
-                                    },
-                                    {
                                         "name": "PrimalItemAmmo_CannonBall_C",
                                         "label": "Cannon Ball",
                                         "canBeBluePrint": true,
@@ -44980,15 +44971,6 @@
                             "EntryWeight": 1,
                             "MinQuantity": 10,
                             "MaxQuantity": 10,
-                            "ChanceToBeBlueprintOverride": 0
-                        },
-                        {
-                            "name": "PrimalItemAmmo_Boulder_C",
-                            "label": "Boulder",
-                            "canBeBluePrint": false,
-                            "EntryWeight": 1,
-                            "MinQuantity": 1,
-                            "MaxQuantity": 1,
                             "ChanceToBeBlueprintOverride": 0
                         },
                         {
